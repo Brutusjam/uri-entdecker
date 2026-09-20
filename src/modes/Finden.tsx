@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { UriKarte } from '../components/UriKarte';
 import { Bildschirm, FehlerBildschirm, LadeBildschirm } from '../components/StatusSeite';
+import { SpielLayout } from '../components/SpielLayout';
 import { Header } from '../components/ui/Header';
 import { Begleitung } from '../components/ui/Begleitung';
 import { Badge } from '../components/ui/Badge';
@@ -162,8 +163,8 @@ export function Finden({ onZurueck, startElementId, startKategorie = 'gemeinde' 
     <Bildschirm>
       <Header titel="Finden" leitfarbe="see-blau" onZurueck={onZurueck} />
 
-      <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:flex-row">
-        <div className="h-[50vh] min-h-[280px] flex-1 overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic lg:h-auto lg:w-[65%]">
+      <SpielLayout
+        karte={
           <UriKarte
             daten={daten}
             ebenen={karte.ebenen}
@@ -175,60 +176,61 @@ export function Finden({ onZurueck, startElementId, startKategorie = 'gemeinde' 
             talNamen={false}
             punktArten={karte.punktArten}
           />
-        </div>
+        }
+        panel={
+          <>
+            <div className="flex flex-col items-center gap-3">
+              <Begleitung
+                key={`${frage.id}-${rolle.anlass ?? 'frage'}-${versuche}`}
+                name={rolle.name}
+                pose={rolle.pose}
+                text={sprechtext}
+                className="w-full"
+              />
 
-        <div className="flex flex-col gap-4 lg:w-[35%] lg:shrink-0">
-          <div className="flex flex-col items-center gap-3">
-            <Begleitung
-              key={`${frage.id}-${rolle.anlass ?? 'frage'}-${versuche}`}
-              name={rolle.name}
-              pose={rolle.pose}
-              text={sprechtext}
-              className="w-full"
-            />
+              {frage.wappen ? (
+                <Sticker src={frage.wappen} alt={`Wappen ${frage.name}`} groesse={112} drehung={-2} />
+              ) : frage.bild ? (
+                <Sticker src={frage.bild} alt={frage.name} groesse={112} drehung={-2} />
+              ) : null}
+            </div>
 
-            {frage.wappen ? (
-              <Sticker src={frage.wappen} alt={`Wappen ${frage.name}`} groesse={112} drehung={-2} />
-            ) : frage.bild ? (
-              <Sticker src={frage.bild} alt={frage.name} groesse={112} drehung={-2} />
-            ) : null}
-          </div>
+            <p className="font-display text-lg">
+              Versuch {Math.min(versuche + 1, MAX_VERSUCHE)} von {MAX_VERSUCHE}
+            </p>
 
-          <p className="font-display text-lg">
-            Versuch {Math.min(versuche + 1, MAX_VERSUCHE)} von {MAX_VERSUCHE}
-          </p>
-
-          {feedback ? (
-            <div
-              className={cn(
-                'rounded-comic-lg border-comic border-ink bg-weiss p-4 shadow-comic',
-                ergebnis === 'richtig' && 'animate-comic-richtig',
-                ergebnis === 'falsch' && 'animate-comic-shake',
-              )}
-            >
-              <div className="flex items-start gap-3">
-                {ergebnis === 'richtig' ? (
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-pill bg-alp-gruen text-weiss animate-check-pop">
-                    <IconCheck className="h-7 w-7" />
-                  </span>
-                ) : (
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-pill bg-koralle text-ink">
-                    <IconKreuz className="h-7 w-7" />
-                  </span>
+            {feedback ? (
+              <div
+                className={cn(
+                  'rounded-comic-lg border-comic border-ink bg-weiss p-4 shadow-comic',
+                  ergebnis === 'richtig' && 'animate-comic-richtig',
+                  ergebnis === 'falsch' && 'animate-comic-shake',
                 )}
-                <div>
-                  <Badge variante={ergebnis === 'richtig' ? 'erfolg' : 'warnung'}>
-                    {ergebnis === 'richtig' ? 'Richtig' : 'Noch nicht'}
-                  </Badge>
-                  <p className="mt-2 text-lg">{feedback}</p>
+              >
+                <div className="flex items-start gap-3">
+                  {ergebnis === 'richtig' ? (
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-pill bg-alp-gruen text-weiss animate-check-pop">
+                      <IconCheck className="h-7 w-7" />
+                    </span>
+                  ) : (
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-pill bg-koralle text-ink">
+                      <IconKreuz className="h-7 w-7" />
+                    </span>
+                  )}
+                  <div>
+                    <Badge variante={ergebnis === 'richtig' ? 'erfolg' : 'warnung'}>
+                      {ergebnis === 'richtig' ? 'Richtig' : 'Noch nicht'}
+                    </Badge>
+                    <p className="mt-2 text-lg">{feedback}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : (
-            <p className="text-lg text-ink/70">Tippe auf die richtige Stelle auf der Karte.</p>
-          )}
-        </div>
-      </div>
+            ) : (
+              <p className="text-lg text-ink/70">Tippe auf die richtige Stelle auf der Karte.</p>
+            )}
+          </>
+        }
+      />
     </Bildschirm>
   );
 }

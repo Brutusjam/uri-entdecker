@@ -43,11 +43,16 @@
 
 @layer base {
   html {
+    height: 100%;
     scroll-padding-top: 6rem;
   }
 
   body {
-    @apply bg-paper font-body text-lg font-semibold text-ink antialiased;
+    @apply h-dvh overflow-hidden bg-paper font-body text-lg font-semibold text-ink antialiased;
+  }
+
+  #root {
+    @apply h-full overflow-hidden;
   }
 }
 

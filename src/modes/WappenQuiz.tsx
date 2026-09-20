@@ -213,9 +213,9 @@ export function WappenQuiz({ onZurueck }: WappenQuizProps) {
         }}
       />
 
-      <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:flex-row">
+      <div className="mx-auto flex w-full max-w-[1400px] min-h-0 flex-1 flex-col gap-4 overflow-hidden p-4 lg:flex-row lg:items-stretch">
         {kartenModus ? (
-          <div className="h-[50vh] min-h-[280px] flex-1 overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic lg:h-auto lg:w-[65%]">
+          <div className="min-h-0 flex-1 overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic lg:w-[65%]">
             <UriKarte
               daten={daten}
               ebenen={poolArt === 'kantone' ? ['kantone', 'seen'] : ['kantone', 'gemeinden', 'seen']}

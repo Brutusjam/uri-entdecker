@@ -118,7 +118,7 @@ function App() {
           />
         </motion.div>
       ) : (
-        <motion.div key="app" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={uebergang}>
+        <motion.div key="app" className="h-dvh overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={uebergang}>
           <FeierOverlay />
           {ansicht === 'entdecken' ? (
             <Entdecken kategorie={entdeckenKategorie} onZurueck={zurueckStart} />

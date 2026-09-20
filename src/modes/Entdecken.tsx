@@ -60,8 +60,8 @@ export function Entdecken({ onZurueck, kategorie = 'gemeinde' }: EntdeckenProps)
     <Bildschirm>
       <Header titel="Entdecken" leitfarbe="alp-gruen" onZurueck={onZurueck} />
 
-      <div className="mx-auto flex w-full max-w-[1400px] min-h-0 flex-1 flex-col gap-4 p-4 lg:flex-row">
-        <div className="h-[55vh] min-h-[320px] flex-1 overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic lg:h-auto lg:w-[65%]">
+      <div className="mx-auto flex w-full max-w-[1400px] min-h-0 flex-1 flex-col gap-4 overflow-hidden p-4 lg:flex-row lg:items-stretch">
+        <div className="min-h-0 flex-1 overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic lg:w-[65%]">
           <UriKarte
             daten={daten}
             auswahl={auswahl}

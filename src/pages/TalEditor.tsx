@@ -131,7 +131,7 @@ export function TalEditor() {
       <div className="mx-auto flex w-full max-w-[1400px] min-h-0 flex-1 flex-col gap-4 p-4 lg:flex-row">
         <div className="flex min-h-0 flex-1 flex-col gap-3 lg:w-[65%]">
           <p className="text-lg font-semibold text-ink">{modusText(modus, aktiv.name)}</p>
-          <div className="relative h-[50vh] min-h-[280px] flex-1 overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic">
+          <div className="relative min-h-0 flex-1 overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic lg:w-[65%]">
             <UriKarte
               daten={daten}
               ebenen={['kantone', 'gemeinden', 'seen']}

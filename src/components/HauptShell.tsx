@@ -31,7 +31,7 @@ export function HauptShell({
     <Bildschirm className="pb-[calc(3.75rem+env(safe-area-inset-bottom))]">
       <Header titel="Uri-Entdecker" logoSrc={assetUrl('/logo/uri-entdecker-logo.svg')} leitfarbe="uri-gelb" />
 
-      <main className="flex-1">
+      <main className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain">
         {tab === 'karte' ? (
           <Fortschrittskarte
             onWeiterUeben={onWeiterUeben}

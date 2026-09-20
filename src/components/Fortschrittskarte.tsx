@@ -122,7 +122,7 @@ export function Fortschrittskarte({ onWeiterUeben, onMission, onJetztUeben }: Fo
   if (fehler || !daten) return <FehlerBildschirm meldung={`Fehler: ${fehler}`} />;
 
   return (
-    <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-4 p-4 lg:flex-row lg:items-start">
+    <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-4 p-4 lg:flex-row lg:items-start lg:min-h-0">
       <div className="flex flex-col gap-3 lg:w-[65%]">
         <ProgressBar wert={gutGelernt} max={aktiveElemente.length} label={aktiveEbene.label} />
 
@@ -143,7 +143,7 @@ export function Fortschrittskarte({ onWeiterUeben, onMission, onJetztUeben }: Fo
           ))}
         </div>
 
-        <div className="h-[clamp(280px,56vh,560px)] overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic">
+        <div className="h-[clamp(220px,42dvh,480px)] overflow-hidden rounded-comic-lg border-comic border-ink bg-sky shadow-comic lg:h-[clamp(280px,50dvh,520px)]">
           <UriKarte
             daten={daten}
             ebenen={[...aktiveEbene.kartenEbenen]}

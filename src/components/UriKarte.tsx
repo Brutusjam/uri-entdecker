@@ -338,6 +338,7 @@ export function UriKarte({
   const istHighlight = (id: string) => highlightIds.includes(id);
   const istBlink = (id: string) => blinkId === id;
   const istAktiv = (id: string) => auswahl?.id === id;
+  const istGelb = (id: string) => istAktiv(id) || istBlink(id) || istHighlight(id);
 
   const flaechenKlasse = (id: string) =>
     cn(
@@ -350,7 +351,7 @@ export function UriKarte({
     if (fortschrittEbene === 'gemeinden' && fortschrittStufen) {
       return stufeFarbe(fortschrittStufen[id] ?? 0);
     }
-    if (istBlink(id) || istHighlight(id)) return FARBE.gelb;
+    if (istGelb(id)) return FARBE.gelb;
     return FARBE.wiese;
   };
 
@@ -358,11 +359,24 @@ export function UriKarte({
     if (fortschrittEbene === 'kantone' && fortschrittStufen && (kuerzel === 'UR' || istNachbarKanton(kuerzel))) {
       return stufeFarbe(fortschrittStufen[id] ?? 0);
     }
+    if (istGelb(id)) return FARBE.gelb;
     if (kuerzel === 'UR') return FARBE.wiese;
-    if (istBlink(id) || istHighlight(id)) return FARBE.gelb;
     if (istNachbarKanton(kuerzel)) return FARBE.nachbar;
     return FARBE.schweiz;
   };
+
+  const aktivOverlay = useMemo(() => {
+    if (!reliefAn || !auswahl) return null;
+    if (auswahl.kategorie === 'gemeinde') {
+      if (fortschrittEbene === 'gemeinden') return null;
+      return daten.gemeinden.features.find((g) => `gem-${g.properties.bfs}` === auswahl.id) ?? null;
+    }
+    if (auswahl.kategorie === 'kanton' && auswahl.kuerzel === 'UR') {
+      if (fortschrittEbene === 'kantone') return null;
+      return uriKanton ?? null;
+    }
+    return null;
+  }, [reliefAn, auswahl, daten, uriKanton, fortschrittEbene]);
 
   const seeFill = (id: string) => {
     if (fortschrittEbene === 'gewaesser' && fortschrittStufen) {
@@ -457,7 +471,7 @@ export function UriKarte({
                     pointerEvents="visibleFill"
                     className={flaechenKlasse(id)}
                   />
-                  {istNachbarKanton(f.properties.kuerzel) ? (
+                  {istNachbarKanton(f.properties.kuerzel) && !istAktiv(id) ? (
                     <path
                       d={zeichne(f)}
                       fill="url(#nachbar-schraffur)"
@@ -517,6 +531,18 @@ export function UriKarte({
                 preserveAspectRatio="none"
               />
             </g>
+          ) : null}
+
+          {aktivOverlay ? (
+            <path
+              d={zeichne(aktivOverlay)}
+              fill={FARBE.gelb}
+              stroke={FARBE.ink}
+              strokeWidth={auswahl?.kategorie === 'kanton' ? 3 : 1.5}
+              vectorEffect="non-scaling-stroke"
+              pointerEvents="none"
+              className="karte-aktiv"
+            />
           ) : null}
 
           {uriKanton && ebenen.includes('kantone') ? (
