@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1194 834" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+<defs>
+<linearGradient id="skyA" x1="0" y1="-2000" x2="0" y2="834" gradientUnits="userSpaceOnUse"><stop offset="0.6" stop-color="#A9DEFA"></stop><stop offset="1" stop-color="#E9F8FF"></stop></linearGradient>
+</defs>
+<rect x="-2000" y="-2000" width="5194" height="2834" fill="url(#skyA)"></rect>
+<g stroke="#1E2440" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<circle cx="1050" cy="120" r="62" fill="#FFC928"></circle>
+<path d="M120 150 q0 -26 30 -26 q10 -22 38 -16 q24 -8 32 16 q24 0 22 26 Z" fill="#FFFFFF"></path>
+<path d="M760 110 q0 -22 26 -22 q8 -18 32 -14 q20 -6 26 14 q20 0 18 22 Z" fill="#FFFFFF"></path>
+<polygon points="0,470 120,330 210,400 330,250 450,380 560,280 680,390 800,230 920,360 1040,290 1194,400 1194,834 0,834" fill="#9CCBEA"></polygon>
+<polygon points="330,250 298,290 315,282 330,296 347,283 367,290" fill="#FFFFFF"></polygon>
+<polygon points="560,280 527,310 542,304 556,316 572,304 593,310" fill="#FFFFFF"></polygon>
+<polygon points="800,230 766,275 782,266 798,280 816,266 842,275" fill="#FFFFFF"></polygon>
+<ellipse cx="610" cy="604" rx="200" ry="28" fill="#3AA7E8"></ellipse>
+<path d="M540 600 q12 -8 24 0 q12 8 24 0 M630 610 q12 -8 24 0 q12 8 24 0" fill="none" stroke="#FFFFFF" stroke-width="4"></path>
+<path d="M0 640 C 200 560, 380 620, 560 640 C 760 662, 950 560, 1194 600 V2000 H0 Z" fill="#3DBE6B"></path>
+<path d="M0 744 C 250 684, 500 724, 700 762 C 900 800, 1050 704, 1194 724 V2000 H0 Z" fill="#2FA85A"></path>
+</g>
+</svg>

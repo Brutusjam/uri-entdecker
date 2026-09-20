@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Stierli, der kleine Uristier">
+  <!--
+    Stierli – Grundfigur «neutral», Uri-Entdecker
+    Stil: Outline #1E2440, 8 px (bei viewBox 400), runde Ecken/Enden, flache Farben.
+    Farben: Fell #23283F, Glanz #3A4160, Hufe #4A4F66, Hörner #FFF1D0,
+            Schnauze #F4B6A6, Ohr innen/Wangen #FF9DB0, Nasenring #E63946,
+            Augenbrauen #6A74A0 (heller als das Fell, damit sichtbar)
+    Ebenen (ids) für Posen: stierli-schatten, -schwanz, -beine, -koerper, -hoerner,
+    -ohren, -kopf, -haarbueschel, -augen, -pupillen, -augenbrauen, -wangen,
+    -schnauze, -nasenring.  Drehpunkt Kopf: (200,190). Der Nasenring geht durch die Nasenscheidewand
+    (oberer Ringteil wird von der Scheidewand verdeckt).  Füsse stehen auf y=374.
+  -->
+  <ellipse id="stierli-schatten" cx="200" cy="382" rx="80" ry="10" fill="#1E2440" opacity="0.1"/>
+  <g stroke="#1E2440" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" transform="translate(0,-30)">
+    <g id="stierli-schwanz">
+      <path d="M288 300 Q332 300 334 262" fill="none"/>
+      <circle cx="336" cy="254" r="11" fill="#1E2440"/>
+    </g>
+    <g id="stierli-beine"><rect x="120" y="316" width="38" height="52" rx="13" fill="#23283F" transform="rotate(25 139 330)"/><rect x="242" y="316" width="38" height="52" rx="13" fill="#23283F" transform="rotate(-25 261 330)"/></g>
+    <g id="stierli-koerper">
+      <ellipse cx="200" cy="300" rx="102" ry="64" fill="#23283F"/>
+      <ellipse cx="200" cy="320" rx="56" ry="30" fill="#3A4160" stroke="none"/>
+    </g>
+    <g id="stierli-kopfgruppe">
+      <g id="stierli-hoerner" fill="#FFF1D0">
+        <path d="M112 124 C 70 114, 52 82, 68 44 C 84 76, 106 90, 138 94 Z"/>
+        <path d="M288 124 C 330 114, 348 82, 332 44 C 316 76, 294 90, 262 94 Z"/>
+      </g>
+      <g id="stierli-ohren">
+        <ellipse cx="88" cy="164" rx="36" ry="19" fill="#23283F" transform="rotate(-20 88 164)"/>
+        <ellipse cx="312" cy="164" rx="36" ry="19" fill="#23283F" transform="rotate(20 312 164)"/>
+        <ellipse cx="86" cy="165" rx="19" ry="8" fill="#FF9DB0" stroke="none" transform="rotate(-20 86 165)"/>
+        <ellipse cx="314" cy="165" rx="19" ry="8" fill="#FF9DB0" stroke="none" transform="rotate(20 314 165)"/>
+      </g>
+      <g id="stierli-kopf">
+        <ellipse cx="200" cy="172" rx="116" ry="102" fill="#23283F"/>
+        <ellipse cx="158" cy="116" rx="40" ry="16" fill="#3A4160" stroke="none" transform="rotate(-15 158 116)"/>
+      </g>
+      <path id="stierli-haarbueschel" d="M168 80 Q182 48 194 76 Q205 44 216 76 Q230 52 234 82" fill="#23283F"/>
+      <g id="stierli-augen" fill="none" stroke="#FFFFFF" stroke-width="10"><path d="M126 170 Q154 134 182 170"/><path d="M218 170 Q246 134 274 170"/></g>
+      
+      <g id="stierli-augenbrauen" fill="none" stroke="#6A74A0" stroke-width="9">
+        <path d="M122 116 Q148 100 178 114"/>
+        <path d="M222 112 Q252 96 278 116"/>
+      </g>
+      <g id="stierli-wangen" fill="#FF9DB0" stroke="none" opacity="0.7">
+        <circle cx="112" cy="212" r="14"/>
+        <circle cx="288" cy="212" r="14"/>
+      </g>
+      <g id="stierli-schnauze">
+        <ellipse cx="200" cy="232" rx="80" ry="48" fill="#F4B6A6"/>
+        <ellipse cx="174" cy="226" rx="10" ry="13" fill="#1E2440" stroke="none"/>
+        <ellipse cx="226" cy="226" rx="10" ry="13" fill="#1E2440" stroke="none"/>
+      </g>
+      <g id="stierli-nasenring" fill="none">
+        <circle cx="200" cy="258" r="22" stroke="#1E2440" stroke-width="15"/>
+        <circle cx="200" cy="258" r="22" stroke="#E63946" stroke-width="8"/>
+        <!-- Nasenscheidewand: verdeckt den oberen Ringteil, der Ring kommt an ihrer Unterkante heraus -->
+        <path d="M185 212 L215 212 L215 236 Q200 248 185 236 Z" fill="#F4B6A6" stroke="none"/>
+        <path d="M186 236 Q200 247 214 236" stroke="#1E2440" stroke-width="5"/>
+        <ellipse cx="174" cy="226" rx="10" ry="13" fill="#1E2440" stroke="none"/>
+        <ellipse cx="226" cy="226" rx="10" ry="13" fill="#1E2440" stroke="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,119 @@
+{
+  "quelle": "Wikimedia Commons (manuell)",
+  "gemeinden": {
+    "1201": {
+      "name": "Altdorf",
+      "datei": "/wappen/gemeinden/1201.svg"
+    },
+    "1202": {
+      "name": "Andermatt",
+      "datei": "/wappen/gemeinden/1202.svg"
+    },
+    "1203": {
+      "name": "Attinghausen",
+      "datei": "/wappen/gemeinden/1203.svg"
+    },
+    "1205": {
+      "name": "Bürglen",
+      "datei": "/wappen/gemeinden/1205.svg"
+    },
+    "1206": {
+      "name": "Erstfeld",
+      "datei": "/wappen/gemeinden/1206.svg"
+    },
+    "1207": {
+      "name": "Flüelen",
+      "datei": "/wappen/gemeinden/1207.svg"
+    },
+    "1208": {
+      "name": "Göschenen",
+      "datei": "/wappen/gemeinden/1208.svg"
+    },
+    "1209": {
+      "name": "Gurtnellen",
+      "datei": "/wappen/gemeinden/1209.svg"
+    },
+    "1210": {
+      "name": "Hospental",
+      "datei": "/wappen/gemeinden/1210.svg"
+    },
+    "1211": {
+      "name": "Isenthal",
+      "datei": "/wappen/gemeinden/1211.svg"
+    },
+    "1212": {
+      "name": "Realp",
+      "datei": "/wappen/gemeinden/1212.svg"
+    },
+    "1213": {
+      "name": "Schattdorf",
+      "datei": "/wappen/gemeinden/1213.svg"
+    },
+    "1214": {
+      "name": "Seedorf",
+      "datei": "/wappen/gemeinden/1214.svg"
+    },
+    "1215": {
+      "name": "Seelisberg",
+      "datei": "/wappen/gemeinden/1215.svg"
+    },
+    "1216": {
+      "name": "Silenen",
+      "datei": "/wappen/gemeinden/1216.svg"
+    },
+    "1217": {
+      "name": "Sisikon",
+      "datei": "/wappen/gemeinden/1217.svg"
+    },
+    "1218": {
+      "name": "Spiringen",
+      "datei": "/wappen/gemeinden/1218.svg"
+    },
+    "1219": {
+      "name": "Unterschächen",
+      "datei": "/wappen/gemeinden/1219.svg"
+    },
+    "1220": {
+      "name": "Wassen",
+      "datei": "/wappen/gemeinden/1220.svg"
+    }
+  },
+  "kantone": {
+    "CH-UR": {
+      "name": "Uri",
+      "datei": "/wappen/kantone/ur.svg"
+    },
+    "CH-BE": {
+      "name": "Bern",
+      "datei": "/wappen/kantone/be.svg"
+    },
+    "CH-SZ": {
+      "name": "Schwyz",
+      "datei": "/wappen/kantone/sz.svg"
+    },
+    "CH-OW": {
+      "name": "Obwalden",
+      "datei": "/wappen/kantone/ow.svg"
+    },
+    "CH-NW": {
+      "name": "Nidwalden",
+      "datei": "/wappen/kantone/nw.svg"
+    },
+    "CH-GL": {
+      "name": "Glarus",
+      "datei": "/wappen/kantone/gl.svg"
+    },
+    "CH-GR": {
+      "name": "Graubünden",
+      "datei": "/wappen/kantone/gr.svg"
+    },
+    "CH-TI": {
+      "name": "Tessin",
+      "datei": "/wappen/kantone/ti.svg"
+    },
+    "CH-VS": {
+      "name": "Wallis",
+      "datei": "/wappen/kantone/vs.svg"
+    }
+  }
+}

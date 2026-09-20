@@ -1,0 +1,11 @@
+---
+description: Regeln für die Uri-Lern-App
+alwaysApply: true
+---
+- Stack: Vite, React, TypeScript (strict), Tailwind, zustand, d3-geo, turf.
+- Texte für Kinder (11 J.): kurz, freundlich, ermutigend; Schweizer Rechtschreibung (ss statt ß).
+- Geodaten nur aus public/geo, Wappen nur aus public/wappen/manifest.json.
+- Spiel-Logik in src/logic/ als reine Funktionen mit Vitest-Tests.
+- Touch-Ziele min. 44 px; jede Interaktion mit Maus und Finger testen.
+- Bei Unklarheiten nachfragen statt raten; keine Fakten erfinden.
+- Alles Visuelle folgt @DESIGN.md: nur Design-Tokens verwenden, keine Farbwerte direkt in Komponenten.

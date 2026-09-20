@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Lia, die Uri-Entdeckerin">
+  <!--
+    Lia – Grundfigur «neutral», Uri-Entdecker (Brustbild, ohne Kappe)
+    Stil: Outline #1E2440, 8 px (bei viewBox 400), runde Ecken/Enden, flache Farben.
+    Farben: Haut #F6C9A5, Haare #7A4A2C, Haar-Glanz #9A6240, Haargummi #FFC928,
+            Hoodie #2EC4B6, Kapuze #1FA396, Rucksackträger #E63946,
+            Wangen #FF9DB0, Sommersprossen #C97B55
+    Ebenen (ids) für Posen: lia-zopf, -koerper, -hals, -kapuze, -baendel, -ohren,
+    -gesicht, -haare, -haargummi, -augenbrauen, -augen, -sommersprossen, -wangen, -nase, -mund.
+    Drehpunkt Kopf: (200,270) (Halsansatz). Bild endet unten am Rand (y=400).
+  -->
+  <g stroke="#1E2440" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
+    <g id="lia-zopf">
+      <path d="M262 118 C 344 106, 372 214, 336 300 C 326 248, 304 206, 262 176 Z" fill="#7A4A2C"/>
+      <path d="M300 150 C 322 176, 330 214, 328 246" fill="none" stroke="#9A6240" stroke-width="6"/>
+    </g>
+    <g id="lia-koerper">
+      <path d="M36 404 C 48 330, 110 298, 200 298 C 290 298, 352 330, 364 404 Z" fill="#2EC4B6"/>
+      <path d="M98 336 L128 326 L152 404 L118 404 Z" fill="#E63946"/>
+      <path d="M302 336 L272 326 L248 404 L282 404 Z" fill="#E63946"/>
+    </g>
+    <rect id="lia-hals" x="174" y="262" width="52" height="52" rx="12" fill="#F6C9A5"/>
+    <path id="lia-kapuze" d="M122 316 C 150 352, 250 352, 278 316 C 258 298, 142 298, 122 316 Z" fill="#1FA396"/>
+    <g id="lia-baendel">
+      <path d="M180 338 L178 376" fill="none" stroke-width="6"/>
+      <path d="M220 338 L222 376" fill="none" stroke-width="6"/>
+      <circle cx="178" cy="380" r="6" fill="#FFFFFF" stroke-width="5"/>
+      <circle cx="222" cy="380" r="6" fill="#FFFFFF" stroke-width="5"/>
+    </g>
+    <g id="lia-arm-rechts"><path d="M306 350 C 330 300, 350 262, 366 232" fill="none" stroke-width="58"/><path d="M306 350 C 330 300, 350 262, 366 232" fill="none" stroke="#2EC4B6" stroke-width="42"/><rect x="364" y="168" width="16" height="44" rx="8" fill="#F6C9A5" stroke-width="6" transform="rotate(28 372 212)"/><circle cx="370" cy="222" r="22" fill="#F6C9A5" stroke-width="7"/></g>
+    <g id="lia-kopfgruppe">
+      <g id="lia-ohren" fill="#F6C9A5">
+        <circle cx="108" cy="200" r="19"/>
+        <circle cx="292" cy="200" r="19"/>
+      </g>
+      <ellipse id="lia-gesicht" cx="200" cy="192" rx="92" ry="98" fill="#F6C9A5"/>
+      <g id="lia-haare" fill="#7A4A2C">
+        <path d="M106 200 C 92 120, 138 78, 202 78 C 266 78, 310 118, 294 200 C 290 172, 278 150, 256 136 C 230 158, 176 168, 142 150 C 124 164, 112 180, 106 200 Z"/>
+        <path d="M142 150 C 150 128, 176 112, 214 110" fill="none" stroke="#9A6240" stroke-width="6"/>
+      </g>
+      <rect id="lia-haargummi" x="284" y="100" width="28" height="34" rx="10" fill="#FFC928" transform="rotate(-25 298 117)"/>
+      <g id="lia-augenbrauen" fill="none" stroke-width="7">
+        <path d="M140 174 Q158 164 178 172"/>
+        <path d="M222 166 Q244 150 264 162"/>
+      </g>
+      <g id="lia-augen" stroke="none">
+        <ellipse cx="160" cy="202" rx="14" ry="18" fill="#1E2440"/>
+        <ellipse cx="240" cy="202" rx="14" ry="18" fill="#1E2440"/>
+        <circle cx="165" cy="195" r="5" fill="#FFFFFF"/>
+        <circle cx="245" cy="195" r="5" fill="#FFFFFF"/>
+      </g>
+      <g id="lia-wangen" fill="#FF9DB0" stroke="none" opacity="0.6">
+        <ellipse cx="136" cy="238" rx="16" ry="9"/>
+        <ellipse cx="264" cy="238" rx="16" ry="9"/>
+      </g>
+      <g id="lia-sommersprossen" fill="#C97B55" stroke="none">
+        <circle cx="140" cy="226" r="3"/><circle cx="150" cy="233" r="3"/><circle cx="131" cy="233" r="3"/>
+        <circle cx="250" cy="226" r="3"/><circle cx="260" cy="233" r="3"/><circle cx="269" cy="226" r="3"/>
+      </g>
+      <path id="lia-nase" d="M198 214 Q190 228 204 230" fill="none" stroke-width="6"/>
+      <path id="lia-mund" d="M166 246 Q200 284 236 246 Z" fill="#FFFFFF" stroke-width="7"/>
+    </g>
+  </g>
+</svg>

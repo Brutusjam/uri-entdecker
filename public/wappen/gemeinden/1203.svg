@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg height="673.8916" width="600" version="1.0" id="svg20" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata id="metadata31">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:date>2006-08-07</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Juan Gómez (Aliman5040)</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/GPL/2.0/"/>
+        <dc:coverage/>
+        <dc:description>Wappen der Gemeinde Attinghausen UR, Schweiz</dc:description>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Attinghausen</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:language/>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>Rudolf Ammann (Rka)</dc:title>
+          </cc:Agent>
+        </dc:contributor>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+        <cc:permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+        <cc:requires rdf:resource="http://web.resource.org/cc/Notice"/>
+        <cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+        <cc:requires rdf:resource="http://web.resource.org/cc/ShareAlike"/>
+        <cc:requires rdf:resource="http://web.resource.org/cc/SourceCode"/>
+      </cc:License>
+      <dc:language>de</dc:language>
+    </rdf:RDF>
+  </metadata>
+  <defs id="defs29">
+    <linearGradient id="linearGradient2893">
+      <stop style="stop-color: rgb(255, 255, 255); stop-opacity: 0.313726;" offset="0" id="stop2895"/>
+      <stop id="stop2897" offset="0.19" style="stop-color: rgb(255, 255, 255); stop-opacity: 0.25098;"/>
+      <stop style="stop-color: rgb(107, 107, 107); stop-opacity: 0.12549;" offset="0.60000002" id="stop2901"/>
+      <stop style="stop-color: rgb(0, 0, 0); stop-opacity: 0.12549;" offset="1" id="stop2899"/>
+    </linearGradient>
+    <radialGradient xlink:href="#linearGradient2893" id="radialGradient3236" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.21503,0,0,1.26667,-839.192,-490.489)" cx="858.04236" cy="579.93323" fx="858.04236" fy="579.93323" r="300"/>
+  </defs>
+  <desc id="desc22">Wappen der Gemeinde Attinghausen UR, Schweiz</desc>
+  <g id="layer1" style="display:inline" transform="translate(712.51672,55.86991)">
+    <path class="st0" d="M -708.08322,-51.436415 V 318.02172 c 0,163.30049 132.26601,295.5665 295.5665,295.5665 163.30049,0 295.5665,-132.26601 295.5665,-295.5665 V -51.436415 Z" id="path1245" style="fill:#fcdd09;fill-opacity:1;stroke:none;stroke-width:8.86699"/>
+    <path class="st0" d="M -708.08322,-51.436415 V 318.02172 c 0,163.30049 132.26601,295.5665 295.5665,295.5665 163.30049,0 295.5665,-132.26601 295.5665,-295.5665 V -51.436415 Z" id="path4" style="fill:none;stroke:#000000;stroke-width:8.86699"/>
+  </g>
+  <g id="layer2" style="display:inline" transform="translate(712.51672,55.86991)">
+    <g id="g7112" transform="matrix(3.9028038,0,0,3.9028038,-3088.2609,-2281.8116)">
+      <path id="path2259" d="m 697.97554,638.40575 2.15971,-13.24604 -2.15971,13.24604 c 2.4819,10.87755 7.60636,20.76489 21.3482,15.00001 -7.02113,-7.38849 -9.51888,-13.9016 -10.94244,-20.94677 8.02885,11.58223 19.54406,30.51607 34.86042,15.67626 -11.37265,-2.28133 -15.21385,-10.68673 -24.59424,-21.08201 9.7256,5.98795 25.62388,26.06734 37.43454,4.45899 -10.17412,-0.57862 -19.89218,-7.54212 -29.7295,-12.83597 12.41451,4.89328 25.01347,10.44137 30.40576,-9.59424 -8.77058,2.90468 -17.76273,1.82115 -26.89353,-1.75828 14.35307,0.4645 24.06417,1.98043 25.2705,-15.40576 -9.67753,4.99296 -19.69909,3.79333 -29.72949,2.43454 11.90812,-0.92519 28.30946,-2.57737 30.81151,-19.05756 -10.22506,7.05867 -28.62765,3.77488 -39.12345,1.99289 -9.43113,-1.60123 -13.49939,12.63548 -2.63483,16.25316 -0.10497,9.41561 -4.3589,16.61843 -15.2705,20.2705 -0.76924,-0.90026 -1.41778,-1.84076 -2.70072,-2.56979 -2.35124,-1.26102 -4.91169,-0.42364 -7.43453,0.40576 2.47818,-0.83544 5.0916,-1.69109 7.43453,-0.40576 L 696.62302,606.3813 700,608 c 0.94552,-2.7247 0.85677,-5.4494 0.74389,-8.1741 0.8176,1.29848 2.56406,2.2254 4.25611,3.1741 -0.26339,-5.85468 1.12425,-12.47137 -1.21726,-17.36691 2.40967,-3.04029 3.47384,-6.08057 4.86907,-9.12086 -11.14679,7.29252 -23.12417,-1.56719 -27.29929,4.59424 -3.44763,-2.9549 -18.7269,-4.92425 -11.35252,9.86908 3.98785,-2.95084 7.80643,-3.6166 11.07769,3.10647 -2.22917,2.36455 -5.2048,2.98735 -8.51223,2.83596 3.50854,7.13354 6.98887,1.74505 11.35252,3.51656 7.08263,-5.67336 0.9058,-10.39961 -1.35252,-15.40576 2.22436,4.99619 8.44042,9.73834 1.35252,15.40576 -4.982,4.54541 -12.37752,3.52338 -12.56546,10 2.59546,-0.0435 5.50083,-0.63338 7.15971,2.43021 -1.65127,-3.0455 -4.53226,-2.46324 -7.15971,-2.43021 -8.74427,8.61611 -17.95672,-8.4223 -13.91798,-16.21727 8.83946,-6.76473 5.54066,-14.71799 -1.50465,-16.19243 -7.82503,-1.63762 -16.69673,5.59333 -38.63061,-2.45938 0.0341,16.02277 20.91457,18.32636 27.70072,18.92231 -9.77566,0.52911 -19.59786,0.54627 -29.7295,-2.84029 2.91025,23.00332 21.11564,14.33343 27.83597,15.54101 -9.11617,2.9356 -18.32721,5.46005 -28.5079,3.78273 5.84392,18.09265 18.39692,11.45007 29.31941,8.51223 -9.72125,3.73958 -16.30958,12.80512 -29.32374,10.94676 11.00569,21.45619 24.80087,5.07996 36.08202,-2.56546 -7.58515,7.05474 -11.45442,15.17116 -23.51655,20.94676 18.24833,14.00212 26.54501,-8.12218 33.11079,-15.2705 -2.78755,7.07242 -2.4195,14.14484 -10.40575,21.21727 14.60052,3.96421 18.10795,-4.74939 20.2705,-15 l -2.29928,-14.05756 2.29928,14.05756 3.10647,20.23864 h 20.54101 z" style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fcdd09;stroke-width:0.999794;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+      <path id="path3232" d="M 684.93331,582.93366 688,583.33345 c -0.0589,3.31756 2.67531,3.97698 5,3.66655 -1.166,-1.09319 -2.23171,-2.19892 -2,-3.46683 L 697,584 c 0.31261,6.35462 -10.51198,9.58869 -12.06669,-1.06634 z" style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"/>
+      <path id="path4203" d="m 681.93366,593.93331 c -6.90501,-3.07953 -13.15129,3.05501 -17.60021,-5.20042 -2.35815,0.94872 -4.18731,6.60037 0.79923,8.00035 5.01116,1.40689 9.02373,-2.67091 16.80098,-2.79993 z" style="fill:#da121a;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"/>
+    </g>
+    <path id="path40432" style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:8.86699" class="st0" d="m -708.08311,288.44781 v 30.48828 c 0,18.56551 1.7921,36.69995 5.0625,54.31445 h 581.00778 c 3.27038,-17.6145 5.0625,-35.74894 5.0625,-54.31445 v -30.48828 z m 31.5801,163.43359 c 16.0989,31.91916 37.7727,60.52754 63.8086,84.50586 h 400.35539 c 26.03589,-23.97832 47.70963,-52.5867 63.8086,-84.50586 z"/>
+  </g>
+  <g id="layer3" style="display:inline" transform="translate(712.51672,55.86991)"/>
+  <g id="layer4" style="display:inline" transform="translate(712.51672,55.86991)"/>
+</svg>

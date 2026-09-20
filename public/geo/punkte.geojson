@@ -1,0 +1,345 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5611537,
+          46.5593092
+        ]
+      },
+      "properties": {
+        "id": "pass-gotthard",
+        "name": "Gotthardpass",
+        "art": "pass",
+        "ele": 2106,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.415184,
+          46.5726851
+        ]
+      },
+      "properties": {
+        "id": "pass-furka",
+        "name": "Furkapass",
+        "art": "pass",
+        "ele": 2429,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6711693,
+          46.658739
+        ]
+      },
+      "properties": {
+        "id": "pass-oberalp",
+        "name": "Oberalppass",
+        "art": "pass",
+        "ele": 2044,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4497936,
+          46.7283637
+        ]
+      },
+      "properties": {
+        "id": "pass-susten",
+        "name": "Sustenpass",
+        "art": "pass",
+        "ele": 2304,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8554418,
+          46.868191
+        ]
+      },
+      "properties": {
+        "id": "pass-klausen",
+        "name": "Klausenpass",
+        "art": "pass",
+        "ele": 1952,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4210932,
+          46.6434517
+        ]
+      },
+      "properties": {
+        "id": "berg-dammastock",
+        "name": "Dammastock",
+        "art": "berg",
+        "ele": 3630,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4169572,
+          46.6126214
+        ]
+      },
+      "properties": {
+        "id": "berg-galenstock",
+        "name": "Galenstock",
+        "art": "berg",
+        "ele": 3586,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7695308,
+          46.7426756
+        ]
+      },
+      "properties": {
+        "id": "berg-oberalpstock",
+        "name": "Oberalpstock",
+        "art": "berg",
+        "ele": 3328,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.824078,
+          46.82859
+        ]
+      },
+      "properties": {
+        "id": "berg-schaerhorn",
+        "name": "Schärhorn",
+        "art": "berg",
+        "ele": 3234,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8712857,
+          46.8420253
+        ]
+      },
+      "properties": {
+        "id": "berg-clariden",
+        "name": "Clariden",
+        "art": "berg",
+        "ele": 3267,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5244444,
+          46.7866667
+        ]
+      },
+      "properties": {
+        "id": "berg-spannort",
+        "name": "Gross Spannort",
+        "art": "berg",
+        "ele": 3198,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6813258,
+          46.7369009
+        ]
+      },
+      "properties": {
+        "id": "berg-bristen",
+        "name": "Bristen",
+        "art": "berg",
+        "ele": 3073,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5351237,
+          46.8618147
+        ]
+      },
+      "properties": {
+        "id": "berg-urirotstock",
+        "name": "Uri Rotstock",
+        "art": "berg",
+        "ele": 2928,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5910497,
+          46.6470907
+        ]
+      },
+      "properties": {
+        "id": "sage-teufelsbruecke",
+        "name": "Teufelsbrücke",
+        "art": "sagenort",
+        "ele": null,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5929087,
+          46.6715226
+        ]
+      },
+      "properties": {
+        "id": "sage-teufelsstein",
+        "name": "Teufelsstein",
+        "art": "sagenort",
+        "ele": null,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.643768,
+          46.8817431
+        ]
+      },
+      "properties": {
+        "id": "sage-telldenkmal",
+        "name": "Telldenkmal",
+        "art": "sagenort",
+        "ele": 457,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6632093,
+          46.8753603
+        ]
+      },
+      "properties": {
+        "id": "sage-tellmuseum",
+        "name": "Tell-Museum",
+        "art": "sagenort",
+        "ele": null,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6122287,
+          46.9322042
+        ]
+      },
+      "properties": {
+        "id": "sage-tellskapelle",
+        "name": "Tellskapelle",
+        "art": "sagenort",
+        "ele": 436,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5932992,
+          46.9704982
+        ]
+      },
+      "properties": {
+        "id": "sage-ruetli",
+        "name": "Rütli",
+        "art": "sagenort",
+        "ele": 435,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4514274,
+          47.0910344
+        ]
+      },
+      "properties": {
+        "id": "sage-hohle-gasse",
+        "name": "Hohle Gasse",
+        "art": "sagenort",
+        "ele": 458,
+        "quelle": "© OpenStreetMap-Mitwirkende (ODbL)"
+      }
+    }
+  ]
+}

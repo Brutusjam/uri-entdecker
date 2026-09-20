@@ -1,0 +1,205 @@
+@import '@fontsource/baloo-2/latin-700.css';
+@import '@fontsource/baloo-2/latin-800.css';
+@import '@fontsource/nunito/latin-600.css';
+@import '@fontsource/nunito/latin-700.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #1e2440;
+  --color-paper: #fff8e7;
+  --color-sky: #cfefff;
+  --color-uri-gelb: #ffc928;
+  --color-uri-gelb-dunkel: #e0a800;
+  --color-alp-gruen: #3dbe6b;
+  --color-alp-gruen-dunkel: #1f8a4c;
+  --color-see-blau: #3aa7e8;
+  --color-see-blau-dunkel: #1c6fb0;
+  --color-koralle: #ff7a59;
+  --color-stier-rot: #e63946;
+  --color-sagen-lila: #8b5cf6;
+  --color-gold: #f5b301;
+  --color-neu-grau: #c9ced8;
+  --color-nachbar-grau: #e4e1d6;
+  --color-schweiz-grau: #eef0f4;
+  --color-weiss: #ffffff;
+  --color-wiese: #bfe8b0;
+  --color-hoodie: #2ec4b6;
+
+  --font-display: 'Baloo 2', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
+
+  --radius-comic: 16px;
+  --radius-comic-lg: 24px;
+  --radius-bubble: 20px;
+  --radius-pill: 999px;
+
+  --shadow-comic: 4px 4px 0 var(--color-ink);
+  --shadow-button: 0 5px 0 var(--color-ink);
+
+  --border-width-comic: 3px;
+  --border-width-comic-sm: 2px;
+  --border-width-sticker: 6px;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-paper font-body text-lg font-semibold text-ink antialiased;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes comic-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes comic-richtig {
+  0%,
+  100% {
+    box-shadow: var(--shadow-comic);
+  }
+  40% {
+    box-shadow:
+      var(--shadow-comic),
+      0 0 0 4px var(--color-alp-gruen);
+  }
+}
+
+@keyframes sticker-shine {
+  0% {
+    transform: translateX(-160%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(280%) skewX(-18deg);
+  }
+}
+
+@keyframes karte-puls {
+  0%,
+  100% {
+    stroke-opacity: 1;
+  }
+  50% {
+    stroke-opacity: 0.35;
+  }
+}
+
+@keyframes check-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-blink {
+  animation: blink 0.8s ease-in-out 3;
+}
+
+.animate-comic-shake {
+  animation: comic-shake 350ms ease;
+}
+
+.animate-comic-richtig {
+  animation: comic-richtig 350ms ease;
+}
+
+.animate-check-pop {
+  animation: check-pop 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.progress-stripes {
+  background-color: var(--color-alp-gruen);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-alp-gruen) 0 8px,
+    var(--color-alp-gruen-dunkel) 8px 16px
+  );
+}
+
+.karte-flaeche {
+  transition: filter 150ms ease;
+}
+
+.karte-relief {
+  mix-blend-mode: multiply;
+}
+
+.karte-flaeche:hover {
+  filter: brightness(1.12);
+}
+
+.karte-aktiv {
+  stroke: var(--color-uri-gelb);
+  stroke-width: 3px;
+}
+
+.karte-gesucht {
+  stroke: var(--color-uri-gelb);
+  stroke-width: 3.5px;
+  animation: karte-puls 0.9s ease-in-out infinite;
+}
+
+.sticker-shine-bar {
+  position: absolute;
+  top: -40%;
+  left: 0;
+  height: 180%;
+  width: 28%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-weiss) 70%, transparent),
+    transparent
+  );
+  animation: sticker-shine 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blink,
+  .animate-comic-shake,
+  .animate-comic-richtig,
+  .animate-check-pop,
+  .karte-gesucht,
+  .sticker-shine-bar {
+    animation: none !important;
+  }
+
+  .sticker-shine-bar {
+    display: none;
+  }
+}

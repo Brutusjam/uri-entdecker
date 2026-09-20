@@ -1,0 +1,13 @@
+{
+  "src": "/geo/relief.jpg",
+  "bbox": [
+    8.1,
+    46.28,
+    9.26,
+    47.24
+  ],
+  "width": 2400,
+  "height": 2899,
+  "layer": "ch.swisstopo.swissalti3d-reliefschattierung",
+  "quelle": "swissALTI3D Reliefschattierung, Bundesamt für Landestopografie swisstopo"
+}
