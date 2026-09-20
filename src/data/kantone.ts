@@ -1,11 +1,12 @@
 import type { LernElement } from '../types/karte';
+import { assetUrl } from '../lib/assetUrl';
 
 const kt = (kuerzel: string, name: string, regionTipp?: string): LernElement => ({
   id: `kt-${kuerzel}`,
   kategorie: 'kanton',
   name,
   geo: kuerzel,
-  wappen: `/wappen/kantone/${kuerzel.toLowerCase()}.svg`,
+  wappen: assetUrl(`/wappen/kantone/${kuerzel.toLowerCase()}.svg`),
   tipps: [
     regionTipp ?? 'Der Kanton grenzt an Uri – wo liegt er auf der Karte?',
     'Schau, welche Kantone um Uri herum liegen.',

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { assetUrl } from '../lib/assetUrl';
 
 /**
  * Splash-Screen «Aufbruch» (Uri-Entdecker)
@@ -44,7 +45,7 @@ export default function SplashScreen({ fortschritt, onStart }: Props) {
     >
       {/* Hintergrund: Himmel, Berge, Urnersee, Hügel – unten verankert */}
       <img
-        src="/splash/hintergrund.svg"
+        src={assetUrl('/splash/hintergrund.svg')}
         alt=""
         className="absolute inset-0 h-full w-full object-cover object-bottom"
       />
@@ -52,7 +53,7 @@ export default function SplashScreen({ fortschritt, onStart }: Props) {
       {/* Logo + Untertitel */}
       <div className="absolute inset-x-0 top-[4%] flex flex-col items-center gap-2 px-6">
         <motion.img
-          src="/logo/uri-entdecker-schriftzug.svg"
+          src={assetUrl('/logo/uri-entdecker-schriftzug.svg')}
           alt="Uri-Entdecker"
           className="w-[min(78vw,460px)] landscape:w-[min(38vw,460px)]"
           initial={{ y: ruhig ? 0 : -180, opacity: 0, rotate: ruhig ? 0 : -6 }}
@@ -76,7 +77,7 @@ export default function SplashScreen({ fortschritt, onStart }: Props) {
         animate={{ x: 0, opacity: 1 }}
         transition={{ ...feder, delay: 0.35 }}
       >
-        <img src="/figuren/lia-neutral.svg" alt="Lia" className="block w-full" />
+        <img src={assetUrl('/figuren/lia-neutral.svg')} alt="Lia" className="block w-full" />
         <motion.div
           className="absolute -top-[16%] left-[22%] whitespace-nowrap rounded-[20px] border-4 border-ink bg-white px-4 py-2 text-lg font-extrabold shadow-comic landscape:left-[78%] landscape:top-0 landscape:text-xl"
           initial={{ scale: 0, opacity: 0 }}
@@ -96,7 +97,7 @@ export default function SplashScreen({ fortschritt, onStart }: Props) {
         transition={{ ...feder, delay: 0.5 }}
       >
         <motion.img
-          src="/figuren/stierli-neutral.svg"
+          src={assetUrl('/figuren/stierli-neutral.svg')}
           alt="Stierli"
           className="block w-full"
           style={{ transformOrigin: 'bottom center' }}

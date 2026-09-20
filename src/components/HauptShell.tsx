@@ -7,6 +7,7 @@ import { StickerAlbum } from './StickerAlbum';
 import { Profil } from './Profil';
 import type { HauptTab } from '../types/navigation';
 import type { MissionArt } from '../logic/mission';
+import { assetUrl } from '../lib/assetUrl';
 
 export interface HauptShellProps extends SpieleScreenProps {
   tab: HauptTab;
@@ -28,7 +29,7 @@ export function HauptShell({
 }: HauptShellProps) {
   return (
     <Bildschirm className="pb-[calc(3.75rem+env(safe-area-inset-bottom))]">
-      <Header titel="Uri-Entdecker" logoSrc="/logo/uri-entdecker-logo.svg" leitfarbe="uri-gelb" />
+      <Header titel="Uri-Entdecker" logoSrc={assetUrl('/logo/uri-entdecker-logo.svg')} leitfarbe="uri-gelb" />
 
       <main className="flex-1">
         {tab === 'karte' ? (

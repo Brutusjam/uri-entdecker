@@ -1,4 +1,5 @@
 import { useState, type ComponentProps, type ReactNode } from 'react';
+import { assetUrl } from '../lib/assetUrl';
 import { Badge } from '../components/ui/Badge';
 import { ComicButton } from '../components/ui/ComicButton';
 import { ComicCard } from '../components/ui/ComicCard';
@@ -268,16 +269,16 @@ export function Styleguide() {
 
         <Abschnitt id="sticker" titel="Sticker">
           <div className="flex flex-wrap items-end gap-8">
-            <FigurSticker drehung={-3} src="/wappen/gemeinden/1201.svg" alt="Altdorf" beschriftung="Normal" />
+            <FigurSticker drehung={-3} src={assetUrl('/wappen/gemeinden/1201.svg')} alt="Altdorf" beschriftung="Normal" />
             <FigurSticker
               drehung={2}
-              src="/wappen/gemeinden/1202.svg"
+              src={assetUrl('/wappen/gemeinden/1202.svg')}
               alt="Andermatt"
               glanz
               beschriftung="Glanz"
             />
             <FigurSticker drehung={-4} leer beschriftung="Leerer Platz" />
-            <FigurSticker drehung={4} src="/wappen/kantone/ur.svg" alt="Uri" beschriftung="Kanton Uri" />
+            <FigurSticker drehung={4} src={assetUrl('/wappen/kantone/ur.svg')} alt="Uri" beschriftung="Kanton Uri" />
           </div>
         </Abschnitt>
 

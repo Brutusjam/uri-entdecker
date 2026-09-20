@@ -5,6 +5,7 @@ import { LIA_POSEN, STIERLI_POSEN } from '../data/figuren';
 import { PAESSE } from '../data/paesse';
 import { BERGE } from '../data/berge';
 import { SAGENORTE, HOHLE_GASSE } from '../data/sagenorte';
+import { oeffentlicherPfad } from '../lib/assetUrl';
 
 const ROOT = process.cwd();
 const geo = (name: string) => join(ROOT, 'public', 'geo', name);
@@ -94,7 +95,7 @@ describe('Punktdaten Phase 9', () => {
       const feature = fc.features.find((f: { properties: { id: string } }) => f.properties.id === el.id);
       expect(feature, `${el.id} fehlt in punkte.geojson`).toBeTruthy();
       expect(feature!.properties.name).toBe(el.name);
-      expect(existsSync(join(ROOT, 'public', el.bild!.slice(1))), `${el.bild} fehlt`).toBe(true);
+      expect(existsSync(join(ROOT, 'public', oeffentlicherPfad(el.bild!).slice(1))), `${el.bild} fehlt`).toBe(true);
     }
 
     const paesse = fc.features.filter((f: { properties: { art: string } }) => f.properties.art === 'pass');

@@ -2,6 +2,7 @@ import { LIA_POSEN, STIERLI_POSEN, figurDatei } from '../data/figuren';
 import { PAESSE } from '../data/paesse';
 import { BERGE } from '../data/berge';
 import { SAGENORTE, HOHLE_GASSE } from '../data/sagenorte';
+import { assetUrl, oeffentlicherPfad } from '../lib/assetUrl';
 
 export const GEO_URLS = [
   '/geo/uri-gemeinden.geojson',
@@ -14,7 +15,7 @@ export const GEO_URLS = [
 
 export const RELIEF_URLS = ['/geo/relief.jpg', '/geo/relief.json'] as const;
 
-export const WAPPEN_MANIFEST_URL = '/wappen/manifest.json';
+export const WAPPEN_MANIFEST_URL = assetUrl('/wappen/manifest.json');
 
 export const SPLASH_SESSION_KEY = 'uri-entdecker-splash-gesehen';
 
@@ -40,13 +41,13 @@ export function profiBildUrls(): string[] {
 
 export function wappenUrls(manifest: WappenManifest): string[] {
   return [
-    ...Object.values(manifest.gemeinden).map((eintrag) => eintrag.datei),
-    ...Object.values(manifest.kantone).map((eintrag) => eintrag.datei),
+    ...Object.values(manifest.gemeinden).map((eintrag) => assetUrl(eintrag.datei)),
+    ...Object.values(manifest.kantone).map((eintrag) => assetUrl(eintrag.datei)),
   ];
 }
 
 export function festeVorladeUrls(): string[] {
-  return [...GEO_URLS, ...figurenUrls(), WAPPEN_MANIFEST_URL];
+  return [...GEO_URLS.map(assetUrl), ...figurenUrls(), WAPPEN_MANIFEST_URL];
 }
 
 export function alleVorladeUrls(manifest: WappenManifest): string[] {
@@ -54,13 +55,14 @@ export function alleVorladeUrls(manifest: WappenManifest): string[] {
 }
 
 export function istBildUrl(url: string): boolean {
+  const pfad = oeffentlicherPfad(url);
   return (
-    url.startsWith('/wappen/') ||
-    url.startsWith('/figuren/') ||
-    url.startsWith('/logo/') ||
-    url.startsWith('/icons/') ||
-    url.startsWith('/profi/') ||
-    url.startsWith('/geo/relief.')
+    pfad.startsWith('/wappen/') ||
+    pfad.startsWith('/figuren/') ||
+    pfad.startsWith('/logo/') ||
+    pfad.startsWith('/icons/') ||
+    pfad.startsWith('/profi/') ||
+    pfad.startsWith('/geo/relief.')
   );
 }
 

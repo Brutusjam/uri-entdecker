@@ -1,4 +1,5 @@
 import type { LernElement } from '../types/karte';
+import { assetUrl } from '../lib/assetUrl';
 
 const STANDARD_TIPPS = [
   'Überlege, in welcher Gegend von Uri die Gemeinde liegt.',
@@ -24,7 +25,7 @@ const gem = (bfs: number, name: string, info: GemeindeInfo): LernElement => ({
   kategorie: 'gemeinde',
   name,
   geo: String(bfs),
-  wappen: `/wappen/gemeinden/${bfs}.svg`,
+  wappen: assetUrl(`/wappen/gemeinden/${bfs}.svg`),
   tipps: [info.regionTipp ?? STANDARD_TIPPS[0], STANDARD_TIPPS[1], STANDARD_TIPPS[2]],
   wappenTipp: info.wappenTipp,
   wappenHintergrund: info.wappenHintergrund,

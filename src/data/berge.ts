@@ -1,11 +1,12 @@
 import type { LernElement } from '../types/karte';
+import { assetUrl } from '../lib/assetUrl';
 
 const berg = (id: string, name: string, tipps: [string, string, string], funFact: string): LernElement => ({
   id,
   kategorie: 'berg',
   name,
   geo: id,
-  bild: `/profi/${id}.svg`,
+  bild: assetUrl(`/profi/${id}.svg`),
   tipps: [...tipps],
   funFact,
 });

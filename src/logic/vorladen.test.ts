@@ -7,11 +7,13 @@ import {
   figurenUrls,
   GEO_URLS,
   RELIEF_URLS,
+  WAPPEN_MANIFEST_URL,
   wappenUrls,
   profiBildUrls,
   istBildUrl,
   type WappenManifest,
 } from './vorladen';
+import { oeffentlicherPfad } from '../lib/assetUrl';
 
 const ROOT = process.cwd();
 
@@ -29,7 +31,7 @@ describe('Vorladen', () => {
   it('deckt alle Dateien in public/figuren ab', () => {
     const aufDisk = dateienIn('figuren').sort();
     const imCode = figurenUrls()
-      .map((url) => url.replace('/figuren/', ''))
+      .map((url) => oeffentlicherPfad(url).replace('/figuren/', ''))
       .sort();
     expect(imCode).toEqual(aufDisk);
   });
@@ -41,7 +43,7 @@ describe('Vorladen', () => {
     const urls = wappenUrls(manifest);
     expect(urls).toHaveLength(28);
     for (const url of urls) {
-      expect(existsSync(join(ROOT, 'public', url))).toBe(true);
+      expect(existsSync(join(ROOT, 'public', oeffentlicherPfad(url).slice(1)))).toBe(true);
     }
   });
 
@@ -50,7 +52,7 @@ describe('Vorladen', () => {
       readFileSync(join(ROOT, 'public', 'wappen', 'manifest.json'), 'utf8'),
     ) as WappenManifest;
     const alle = alleVorladeUrls(manifest);
-    expect(alle).toContain('/wappen/manifest.json');
+    expect(alle).toContain(WAPPEN_MANIFEST_URL);
     expect(alle.length).toBe(festeVorladeUrls().length + wappenUrls(manifest).length + profiBildUrls().length);
     expect(new Set(alle).size).toBe(alle.length);
   });

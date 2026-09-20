@@ -1,3 +1,5 @@
+import { assetUrl } from '../lib/assetUrl';
+
 export const LIA_POSEN = [
   'neutral',
   'zeigt',
@@ -27,5 +29,5 @@ export type FigurName = 'lia' | 'stierli';
 export type FigurPose = LiaPose | StierliPose;
 
 export function figurDatei(name: FigurName, pose: FigurPose): string {
-  return `/figuren/${name}-${pose}.svg`;
+  return assetUrl(`/figuren/${name}-${pose}.svg`);
 }

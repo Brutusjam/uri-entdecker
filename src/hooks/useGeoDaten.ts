@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import type { GeoDaten } from '../types/karte';
+import { assetUrl } from '../lib/assetUrl';
 
 const DATEIEN: Record<keyof GeoDaten, string> = {
-  gemeinden: '/geo/uri-gemeinden.geojson',
-  kantone: '/geo/kantone.geojson',
-  urnersee: '/geo/urnersee.geojson',
-  vierwaldstaettersee: '/geo/vierwaldstaettersee.geojson',
-  goescheneralpsee: '/geo/goescheneralpsee.geojson',
-  punkte: '/geo/punkte.geojson',
+  gemeinden: assetUrl('/geo/uri-gemeinden.geojson'),
+  kantone: assetUrl('/geo/kantone.geojson'),
+  urnersee: assetUrl('/geo/urnersee.geojson'),
+  vierwaldstaettersee: assetUrl('/geo/vierwaldstaettersee.geojson'),
+  goescheneralpsee: assetUrl('/geo/goescheneralpsee.geojson'),
+  punkte: assetUrl('/geo/punkte.geojson'),
 };
 
 export function useGeoDaten() {
