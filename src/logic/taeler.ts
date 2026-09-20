@@ -91,6 +91,61 @@ export function findeTalAnPunkt(lng: number, lat: number, taeler: TalGeo[]): Tal
   })[0]!;
 }
 
+/** Mindest-Trefferradius um Tallinie und Talname in Kartenpixeln (DESIGN: 48 px Touch-Ziel). */
+export const TAL_TREFFER_PX = 24;
+
+function abstandZuSegment(
+  px: number,
+  py: number,
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number,
+): number {
+  const dx = bx - ax;
+  const dy = by - ay;
+  const laengeQuadrat = dx * dx + dy * dy;
+  if (laengeQuadrat === 0) return Math.hypot(px - ax, py - ay);
+  const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / laengeQuadrat));
+  return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+}
+
+/**
+ * Tal-Treffer in Kartenpixeln: erfasst die Tallinie und den gezeichneten Talnamen.
+ * Ergänzt findeTalAnPunkt, dessen Kilometer-Puffer auf kleinen Bildschirmen zu schmal ist.
+ */
+export function findeTalAnPixel(
+  mapX: number,
+  mapY: number,
+  taeler: TalGeo[],
+  projektion: (c: Koordinate) => [number, number] | null | undefined,
+  maxPx = TAL_TREFFER_PX,
+): TalGeo | null {
+  let best: { tal: TalGeo; dist: number } | null = null;
+
+  for (const tal of taeler) {
+    const punkte = tal.linie
+      .map((c) => projektion(c))
+      .filter((p): p is [number, number] => Array.isArray(p) && Number.isFinite(p[0]) && Number.isFinite(p[1]));
+
+    let dist = Infinity;
+    for (let i = 1; i < punkte.length; i += 1) {
+      const a = punkte[i - 1]!;
+      const b = punkte[i]!;
+      dist = Math.min(dist, abstandZuSegment(mapX, mapY, a[0], a[1], b[0], b[1]));
+    }
+
+    const label = tal.label ? projektion(tal.label) : null;
+    if (label && Number.isFinite(label[0]) && Number.isFinite(label[1])) {
+      dist = Math.min(dist, Math.hypot(mapX - label[0], mapY - label[1]));
+    }
+
+    if (dist <= maxPx && (!best || dist < best.dist)) best = { tal, dist };
+  }
+
+  return best?.tal ?? null;
+}
+
 export function liniePfad(
   linie: Koordinate[],
   projektion: (c: Koordinate) => [number, number] | null | undefined,

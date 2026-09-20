@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { elementeFuer, kartenModus, waehleNaechstesElement, waehleWeiterUebenZiel } from './fragen';
 import type { LernElement } from '../types/karte';
+import type { FortschrittMap } from '../types/fortschritt';
 import { beiRichtig, neuerFortschritt } from './leitner';
 
 const elemente: LernElement[] = [
@@ -40,10 +41,26 @@ describe('fragen', () => {
     expect(['gem-b', 'gem-c']).toContain(gewaehlt.id);
   });
 
-  it('wählt für «Weiter üben» aus den Grund-Elementen', () => {
-    const ziel = waehleWeiterUebenZiel({});
-    expect(ziel.id).toBeTruthy();
-    expect(['gemeinde', 'kanton', 'tal', 'gewaesser']).toContain(ziel.kategorie);
+  it('beginnt «Weiter üben» bei den Gemeinden', () => {
+    for (let i = 0; i < 10; i++) {
+      expect(waehleWeiterUebenZiel({}).kategorie).toBe('gemeinde');
+    }
+  });
+
+  it('geht zu den Kantonen weiter, wenn alle Gemeinden sitzen', () => {
+    const fortschritt: FortschrittMap = {};
+    for (const gem of elementeFuer('gemeinde')) {
+      fortschritt[gem.id] = { ...neuerFortschritt(), stufe: 3, naechsteWiederholung: '2999-01-01' };
+    }
+    expect(waehleWeiterUebenZiel(fortschritt).kategorie).toBe('kanton');
+  });
+
+  it('nimmt fällige Wiederholungen vor neuen Elementen', () => {
+    const [ziel] = elementeFuer('gewaesser');
+    const fortschritt: FortschrittMap = {
+      [ziel!.id]: { ...neuerFortschritt(), stufe: 2, naechsteWiederholung: '2020-01-01' },
+    };
+    expect(waehleWeiterUebenZiel(fortschritt).id).toBe(ziel!.id);
   });
 
   it('nimmt ein anderes Element, auch wenn nur das letzte auf der tiefsten Stufe ist', () => {

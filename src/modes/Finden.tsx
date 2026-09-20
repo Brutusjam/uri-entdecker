@@ -2,11 +2,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { UriKarte } from '../components/UriKarte';
 import { Bildschirm, FehlerBildschirm, LadeBildschirm } from '../components/StatusSeite';
 import { SpielLayout } from '../components/SpielLayout';
+import { KategorieWahl } from '../components/KategorieWahl';
 import { Header } from '../components/ui/Header';
 import { Begleitung } from '../components/ui/Begleitung';
 import { Badge } from '../components/ui/Badge';
+import { ComicButton } from '../components/ui/ComicButton';
 import { IconCheck, IconKreuz } from '../components/ui/icons';
 import { Sticker } from '../components/ui/Sticker';
+import { kategorieInfo } from '../data/kategorien';
 import { useGeoDaten } from '../hooks/useGeoDaten';
 import { ELEMENT_MAP } from '../data/elemente';
 import { istFangfrage } from '../data/fangfragen';
@@ -50,11 +53,14 @@ export function Finden({ onZurueck, startElementId, startKategorie = 'gemeinde' 
   const { daten, fehler, laden } = useGeoDaten();
   const { fortschritt, letzteFrageId, antwortRichtig, antwortFalsch, setLetzteFrage } =
     useFortschrittStore();
+  const profiFreigeschaltet = useFortschrittStore((s) => s.profiFreigeschaltet);
 
-  const kategorie = useMemo<Kategorie>(() => {
+  const [kategorie, setKategorie] = useState<Kategorie>(() => {
     if (startElementId) return ELEMENT_MAP.get(startElementId)?.kategorie ?? startKategorie;
     return startKategorie;
-  }, [startElementId, startKategorie]);
+  });
+  // Direkt geübte Elemente überspringen die Auswahl.
+  const [phase, setPhase] = useState<'setup' | 'spiel'>(startElementId ? 'spiel' : 'setup');
 
   const [frage, setFrage] = useState<LernElement | null>(null);
   const [versuche, setVersuche] = useState(0);
@@ -86,8 +92,8 @@ export function Finden({ onZurueck, startElementId, startKategorie = 'gemeinde' 
   );
 
   useEffect(() => {
-    if (daten && !frage) neueFrage(startElementId);
-  }, [daten, frage, startElementId, neueFrage]);
+    if (daten && phase === 'spiel' && !frage) neueFrage(startElementId);
+  }, [daten, phase, frage, startElementId, neueFrage]);
 
   const highlightIds = useMemo(() => {
     if (!frage || frage.kategorie !== 'gemeinde' || versuche < 1) return [];
@@ -153,15 +159,50 @@ export function Finden({ onZurueck, startElementId, startKategorie = 'gemeinde' 
   }, [frage, rolle.anlass, rolle.sprecher]);
 
   if (laden) return <LadeBildschirm />;
-  if (fehler || !daten || !frage) {
-    return <FehlerBildschirm meldung={`Fehler: ${fehler ?? 'Keine Frage'}`} onZurueck={onZurueck} />;
+  if (fehler || !daten) {
+    return <FehlerBildschirm meldung={`Fehler: ${fehler ?? 'Keine Daten'}`} onZurueck={onZurueck} />;
+  }
+
+  if (phase === 'setup') {
+    const info = kategorieInfo(kategorie);
+    return (
+      <Bildschirm>
+        <Header titel="Wo liegt das?" leitfarbe="see-blau" onZurueck={onZurueck} />
+        <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-5 p-4">
+          <Begleitung
+            name="lia"
+            pose="zeigt"
+            text="Ich frage nach einem Ort, du tippst ihn auf der Karte an. Drei Versuche, mit Tipps."
+          />
+          <KategorieWahl
+            wert={kategorie}
+            onChange={setKategorie}
+            profi={profiFreigeschaltet}
+            titel="Was möchtest du üben?"
+          />
+          <ComicButton
+            fullWidth
+            onClick={() => {
+              setFrage(null);
+              setPhase('spiel');
+            }}
+          >
+            Los mit {info.titel}
+          </ComicButton>
+        </div>
+      </Bildschirm>
+    );
+  }
+
+  if (!frage) {
+    return <FehlerBildschirm meldung="Keine Frage gefunden." onZurueck={onZurueck} />;
   }
 
   const karte = kartenModus(frage.kategorie);
 
   return (
     <Bildschirm>
-      <Header titel="Finden" leitfarbe="see-blau" onZurueck={onZurueck} />
+      <Header titel="Wo liegt das?" leitfarbe="see-blau" onZurueck={onZurueck} />
 
       <SpielLayout
         karte={
@@ -227,6 +268,12 @@ export function Finden({ onZurueck, startElementId, startKategorie = 'gemeinde' 
               </div>
             ) : (
               <p className="text-lg text-ink/70">Tippe auf die richtige Stelle auf der Karte.</p>
+            )}
+
+            {startElementId ? null : (
+              <ComicButton variante="neutral" fullWidth onClick={() => setPhase('setup')}>
+                Andere Gruppe üben
+              </ComicButton>
             )}
           </>
         }

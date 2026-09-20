@@ -1,45 +1,51 @@
 import { Bildschirm } from './StatusSeite';
 import { Header } from './ui/Header';
 import { TabLeiste } from './ui/TabLeiste';
-import { Fortschrittskarte } from './Fortschrittskarte';
-import { SpieleScreen, type SpieleScreenProps } from './SpieleScreen';
+import { StartSeite } from './StartSeite';
+import { SpieleScreen } from './SpieleScreen';
 import { StickerAlbum } from './StickerAlbum';
 import { Profil } from './Profil';
 import type { HauptTab } from '../types/navigation';
+import type { ModusId } from '../data/modi';
 import type { MissionArt } from '../logic/mission';
+import type { Kategorie } from '../types/karte';
 import { assetUrl } from '../lib/assetUrl';
 
-export interface HauptShellProps extends SpieleScreenProps {
+export interface HauptShellProps {
   tab: HauptTab;
   onTabWechsel: (tab: HauptTab) => void;
-  onWeiterUeben: () => void;
+  onModus: (id: ModusId) => void;
+  onUebenKategorie: (kategorie: Kategorie) => void;
+  onKarte: () => void;
   onMission: (art: MissionArt) => void;
-  onJetztUeben: (elementId: string) => void;
   onUeben: (elementId: string) => void;
 }
 
 export function HauptShell({
   tab,
   onTabWechsel,
-  onWeiterUeben,
+  onModus,
+  onUebenKategorie,
+  onKarte,
   onMission,
-  onJetztUeben,
   onUeben,
-  ...spiele
 }: HauptShellProps) {
   return (
     <Bildschirm className="pb-[calc(3.75rem+env(safe-area-inset-bottom))]">
       <Header titel="Uri-Entdecker" logoSrc={assetUrl('/logo/uri-entdecker-logo.svg')} leitfarbe="uri-gelb" />
 
       <main className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain">
-        {tab === 'karte' ? (
-          <Fortschrittskarte
-            onWeiterUeben={onWeiterUeben}
+        {tab === 'start' ? (
+          <StartSeite
+            onUeben={onUebenKategorie}
+            onUebenElement={onUeben}
+            onKarte={onKarte}
+            onAlleSpiele={() => onTabWechsel('spiele')}
+            onModus={onModus}
             onMission={onMission}
-            onJetztUeben={onJetztUeben}
           />
         ) : null}
-        {tab === 'spiele' ? <SpieleScreen {...spiele} /> : null}
+        {tab === 'spiele' ? <SpieleScreen onModus={onModus} /> : null}
         {tab === 'album' ? <StickerAlbum eingebettet /> : null}
         {tab === 'profil' ? <Profil eingebettet onUeben={onUeben} /> : null}
       </main>

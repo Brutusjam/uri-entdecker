@@ -1,13 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { TAL_KATALOG, TAELER } from '../data/taeler';
 import {
+  findeTalAnPixel,
   findeTalAnPunkt,
   istTalFertig,
   leereTaeler,
   parseTaelerDatei,
   talPuffer,
   taelerJson,
+  TAL_TREFFER_PX,
   TAELER_GEO,
+  type Koordinate,
   type TalGeo,
 } from './taeler';
 
@@ -110,5 +113,39 @@ describe('Täler', () => {
     expect(TAELER_GEO).toHaveLength(10);
     expect(TAELER_GEO.every(istTalFertig)).toBe(true);
     expect(findeTalAnPunkt(8.768, 46.876, TAELER_GEO)?.id).toBe('tal-schaechental');
+  });
+});
+
+describe('findeTalAnPixel', () => {
+  /** Ein Grad entspricht hier 1000 Pixeln – macht Abstände leicht nachrechenbar. */
+  const projektion = (c: Koordinate): [number, number] => [c[0] * 1000, c[1] * 1000];
+  const labelPx = projektion(SCHAECHEN.label!);
+
+  it('trifft den Talnamen innerhalb des Touch-Radius', () => {
+    const treffer = findeTalAnPixel(labelPx[0] + 10, labelPx[1] + 10, [SCHAECHEN], projektion);
+    expect(treffer?.id).toBe('tal-schaechental');
+  });
+
+  it('trifft nicht, wenn der Tipp weit daneben liegt', () => {
+    const weit = TAL_TREFFER_PX * 20;
+    expect(findeTalAnPixel(labelPx[0] + weit, labelPx[1] + weit, [SCHAECHEN], projektion)).toBeNull();
+  });
+
+  it('trifft auch mitten auf einem Liniensegment', () => {
+    const a = projektion(SCHAECHEN.linie[0]!);
+    const b = projektion(SCHAECHEN.linie[1]!);
+    const mitte: [number, number] = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+    expect(findeTalAnPixel(mitte[0], mitte[1], [SCHAECHEN], projektion)?.id).toBe('tal-schaechental');
+  });
+
+  it('nimmt bei zwei Kandidaten das nähere Tal', () => {
+    const ursernPx = projektion(URSERN.label!);
+    const treffer = findeTalAnPixel(ursernPx[0] + 5, ursernPx[1], [SCHAECHEN, URSERN], projektion);
+    expect(treffer?.id).toBe('tal-urserntal');
+  });
+
+  it('ignoriert Täler ohne Linie', () => {
+    const ohne: TalGeo = { id: 'tal-leer', name: 'Leer', linie: [], label: null };
+    expect(findeTalAnPixel(0, 0, [ohne], projektion)).toBeNull();
   });
 });

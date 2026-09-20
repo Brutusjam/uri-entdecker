@@ -10,6 +10,7 @@ import { Blitz } from './modes/Blitz';
 import { Pruefung } from './modes/Pruefung';
 import { Duell } from './modes/Duell';
 import { HauptShell } from './components/HauptShell';
+import { Fortschrittskarte } from './components/Fortschrittskarte';
 import { FeierOverlay } from './components/FeierOverlay';
 import SplashScreen from './components/SplashScreen';
 import { PassReise } from './profi/PassReise';
@@ -22,15 +23,16 @@ import { TalEditor } from './pages/TalEditor';
 import { useAssetVorladen } from './hooks/useAssetVorladen';
 import { useUebungTicker } from './hooks/useUebungTicker';
 import { merkeSplashGesehen, splashSchonGesehen } from './logic/vorladen';
-import { waehleWeiterUebenZiel } from './logic/fragen';
 import { ELEMENT_MAP } from './data/elemente';
 import { useFortschrittStore } from './store/fortschritt';
+import type { ModusId } from './data/modi';
 import type { MissionArt } from './logic/mission';
 import type { HauptTab } from './types/navigation';
 import type { Kategorie } from './types/karte';
 
 type Ansicht =
-  | 'start'
+  | 'haupt'
+  | 'karte'
   | 'entdecken'
   | 'finden'
   | 'wappen'
@@ -50,24 +52,25 @@ function aktuellerPfad(): string {
   return window.location.pathname.replace(/\/+$/, '') || '/';
 }
 
-function ansichtFuerMission(art: MissionArt): Ansicht {
-  if (art === 'finden') return 'finden';
-  if (art === 'wappen') return 'wappen';
-  if (art === 'beschriften') return 'beschriften';
-  if (art === 'memory') return 'memory';
-  if (art === 'puzzle') return 'puzzle';
-  return 'blitz';
-}
+const MISSION_MODUS: Record<MissionArt, ModusId> = {
+  finden: 'finden',
+  wappen: 'wappen',
+  beschriften: 'beschriften',
+  memory: 'memory',
+  puzzle: 'puzzle',
+  blitz: 'blitz',
+};
 
 function App() {
-  const [ansicht, setAnsicht] = useState<Ansicht>('start');
-  const [hauptTab, setHauptTab] = useState<HauptTab>('karte');
-  const [zurueckTab, setZurueckTab] = useState<HauptTab>('karte');
+  const [ansicht, setAnsicht] = useState<Ansicht>('haupt');
+  const [hauptTab, setHauptTab] = useState<HauptTab>('start');
+  const [zurueckTab, setZurueckTab] = useState<HauptTab>('start');
   const [findenZiel, setFindenZiel] = useState<string | null>(null);
   const [findenKategorie, setFindenKategorie] = useState<Kategorie>('gemeinde');
   const [entdeckenKategorie, setEntdeckenKategorie] = useState<Kategorie>('gemeinde');
   const [splashSichtbar, setSplashSichtbar] = useState(() => !splashSchonGesehen());
   const { fortschritt } = useAssetVorladen(splashSichtbar);
+  const merkeModusGespielt = useFortschrittStore((s) => s.merkeModusGespielt);
   const ruhig = useReducedMotion() ?? false;
   const uebergang = { duration: ruhig ? 0.15 : 0.35 };
   useUebungTicker();
@@ -76,27 +79,34 @@ function App() {
     window.scrollTo(0, 0);
   }, [ansicht, hauptTab]);
 
-  const zurueckStart = () => {
+  const zurueckHaupt = () => {
     setFindenZiel(null);
-    setAnsicht('start');
+    setAnsicht('haupt');
     setHauptTab(zurueckTab);
   };
 
-  const starteModus = (ziel: Ansicht, tab: HauptTab = hauptTab) => {
-    setZurueckTab(tab);
+  const oeffne = (ziel: Ansicht) => {
+    setZurueckTab(hauptTab);
     setAnsicht(ziel);
   };
 
-  const starteFinden = (elementId: string, tab: HauptTab) => {
-    setFindenZiel(elementId);
-    setFindenKategorie(ELEMENT_MAP.get(elementId)?.kategorie ?? 'gemeinde');
-    starteModus('finden', tab);
+  /** Modus aus Spiele-Liste, Startseite oder Mission starten. */
+  const starteModus = (id: ModusId, kategorie?: Kategorie) => {
+    merkeModusGespielt(id);
+    if (id === 'finden') {
+      setFindenZiel(null);
+      setFindenKategorie(kategorie ?? 'gemeinde');
+    }
+    if (id === 'entdecken') setEntdeckenKategorie(kategorie ?? 'gemeinde');
+    oeffne(id);
   };
 
-  const handleWeiterUeben = () => {
-    const storeFortschritt = useFortschrittStore.getState().fortschritt;
-    const ziel = waehleWeiterUebenZiel(storeFortschritt);
-    starteFinden(ziel.id, 'karte');
+  /** Einzelnes Element gezielt üben (Karte, Profil, Übungstest). */
+  const uebeElement = (elementId: string) => {
+    merkeModusGespielt('finden');
+    setFindenZiel(elementId);
+    setFindenKategorie(ELEMENT_MAP.get(elementId)?.kategorie ?? 'gemeinde');
+    oeffne('finden');
   };
 
   if (import.meta.env.DEV) {
@@ -120,75 +130,49 @@ function App() {
       ) : (
         <motion.div key="app" className="h-dvh overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={uebergang}>
           <FeierOverlay />
-          {ansicht === 'entdecken' ? (
-            <Entdecken kategorie={entdeckenKategorie} onZurueck={zurueckStart} />
+          {ansicht === 'karte' ? (
+            <Fortschrittskarte onZurueck={zurueckHaupt} onJetztUeben={uebeElement} />
+          ) : ansicht === 'entdecken' ? (
+            <Entdecken kategorie={entdeckenKategorie} onZurueck={zurueckHaupt} />
           ) : ansicht === 'finden' ? (
             <Finden
               startElementId={findenZiel}
               startKategorie={findenKategorie}
-              onZurueck={zurueckStart}
+              onZurueck={zurueckHaupt}
             />
           ) : ansicht === 'wappen' ? (
-            <WappenQuiz onZurueck={zurueckStart} />
+            <WappenQuiz onZurueck={zurueckHaupt} />
           ) : ansicht === 'memory' ? (
-            <Memory onZurueck={zurueckStart} />
+            <Memory onZurueck={zurueckHaupt} />
           ) : ansicht === 'puzzle' ? (
-            <Puzzle onZurueck={zurueckStart} />
+            <Puzzle onZurueck={zurueckHaupt} />
           ) : ansicht === 'beschriften' ? (
-            <Beschriften onZurueck={zurueckStart} />
+            <Beschriften onZurueck={zurueckHaupt} />
           ) : ansicht === 'blitz' ? (
-            <Blitz onZurueck={zurueckStart} />
+            <Blitz onZurueck={zurueckHaupt} />
           ) : ansicht === 'pruefung' ? (
-            <Pruefung
-              onZurueck={zurueckStart}
-              onUeben={(id) => starteFinden(id, zurueckTab)}
-            />
+            <Pruefung onZurueck={zurueckHaupt} onUeben={uebeElement} />
           ) : ansicht === 'duell' ? (
-            <Duell onZurueck={zurueckStart} />
+            <Duell onZurueck={zurueckHaupt} />
           ) : ansicht === 'pass-reise' ? (
-            <PassReise onZurueck={zurueckStart} />
+            <PassReise onZurueck={zurueckHaupt} />
           ) : ansicht === 'gipfel' ? (
-            <GipfelQuiz onZurueck={zurueckStart} />
+            <GipfelQuiz onZurueck={zurueckHaupt} />
           ) : ansicht === 'sagen' ? (
-            <SagenComic
-              onZurueck={zurueckStart}
-              onQuiz={() => starteModus('sagen-quiz', zurueckTab)}
-            />
+            <SagenComic onZurueck={zurueckHaupt} onQuiz={() => setAnsicht('sagen-quiz')} />
           ) : ansicht === 'sagen-quiz' ? (
-            <SagenQuiz onZurueck={zurueckStart} />
+            <SagenQuiz onZurueck={zurueckHaupt} />
           ) : ansicht === 'tell-pfad' ? (
-            <TellPfad onZurueck={zurueckStart} />
+            <TellPfad onZurueck={zurueckHaupt} />
           ) : (
             <HauptShell
               tab={hauptTab}
               onTabWechsel={setHauptTab}
-              onWeiterUeben={handleWeiterUeben}
-              onMission={(art) => {
-                setFindenZiel(null);
-                starteModus(ansichtFuerMission(art), 'karte');
-              }}
-              onJetztUeben={(id) => starteFinden(id, 'karte')}
-              onUeben={(id) => starteFinden(id, 'profil')}
-              onEntdecken={(kategorie) => {
-                setEntdeckenKategorie(kategorie ?? 'gemeinde');
-                starteModus('entdecken', 'spiele');
-              }}
-              onFinden={(kategorie) => {
-                setFindenZiel(null);
-                setFindenKategorie(kategorie ?? 'gemeinde');
-                starteModus('finden', 'spiele');
-              }}
-              onWappen={() => starteModus('wappen', 'spiele')}
-              onMemory={() => starteModus('memory', 'spiele')}
-              onPuzzle={() => starteModus('puzzle', 'spiele')}
-              onBeschriften={() => starteModus('beschriften', 'spiele')}
-              onBlitz={() => starteModus('blitz', 'spiele')}
-              onPruefung={() => starteModus('pruefung', 'spiele')}
-              onDuell={() => starteModus('duell', 'spiele')}
-              onPassReise={() => starteModus('pass-reise', 'spiele')}
-              onGipfel={() => starteModus('gipfel', 'spiele')}
-              onSagen={() => starteModus('sagen', 'spiele')}
-              onTellPfad={() => starteModus('tell-pfad', 'spiele')}
+              onModus={(id) => starteModus(id)}
+              onUebenKategorie={(kategorie) => starteModus('finden', kategorie)}
+              onKarte={() => oeffne('karte')}
+              onMission={(art) => starteModus(MISSION_MODUS[art])}
+              onUeben={uebeElement}
             />
           )}
         </motion.div>

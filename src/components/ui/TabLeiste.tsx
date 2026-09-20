@@ -1,9 +1,9 @@
 import { cn } from './cn';
-import { IconAlbum, IconKarte, IconKarten, IconProfil } from './icons';
+import { IconAlbum, IconHome, IconKarten, IconProfil } from './icons';
 import type { HauptTab } from '../../types/navigation';
 
-const TABS: { id: HauptTab; label: string; icon: typeof IconKarte }[] = [
-  { id: 'karte', label: 'Karte', icon: IconKarte },
+const TABS: { id: HauptTab; label: string; icon: typeof IconHome }[] = [
+  { id: 'start', label: 'Start', icon: IconHome },
   { id: 'spiele', label: 'Spiele', icon: IconKarten },
   { id: 'album', label: 'Album', icon: IconAlbum },
   { id: 'profil', label: 'Profil', icon: IconProfil },

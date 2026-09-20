@@ -11,7 +11,7 @@ import {
   seePuffer,
 } from '../logic/karte';
 import { findePunktAnPunkt, punktAlsAuswahl } from '../logic/punkte';
-import { findeTalAnPunkt, liniePfad, talPuffer, type TalGeo } from '../logic/taeler';
+import { findeTalAnPixel, findeTalAnPunkt, liniePfad, talPuffer, type TalGeo } from '../logic/taeler';
 import { istNachbarKanton, KARTEN_NACHBARN_KUERZEL } from '../data/kantone';
 import { stufeFarbe } from '../logic/leitner';
 import { RELIEF } from '../data/relief';
@@ -238,7 +238,9 @@ export function UriKarte({
       }
       if (flaeche?.kategorie === 'gewaesser') return flaeche;
       if (taeler.length > 0) {
-        const tal = findeTalAnPunkt(lng, lat, taeler);
+        const tal =
+          findeTalAnPunkt(lng, lat, taeler) ??
+          findeTalAnPixel(mapX, mapY, taeler, (c) => projection(c));
         if (tal) return { id: tal.id, kategorie: 'tal', name: tal.name };
       }
       return flaeche;

@@ -8,8 +8,8 @@ import { PAESSE } from '../data/paesse';
 import { BERGE } from '../data/berge';
 import { SAGENORTE } from '../data/sagenorte';
 import type { Kategorie, KartenBlick, KartenEbenen, LernElement, PunktArt } from '../types/karte';
-import type { ElementFortschritt, FortschrittMap } from '../types/fortschritt';
-import { istFaellig, neuerFortschritt } from './leitner';
+import type { ElementFortschritt, FortschrittMap, LeitnerStufe } from '../types/fortschritt';
+import { heuteIso, istFaellig, istGutGelernt, neuerFortschritt } from './leitner';
 
 export function elementeFuer(kategorie: Kategorie): LernElement[] {
   if (kategorie === 'kanton') return [...KANTONE];
@@ -99,8 +99,31 @@ export function findeElement(elemente: LernElement[], id: string): LernElement |
 }
 
 /** Nächstes fälliges Element für «Weiter üben» auf dem Startbildschirm. */
-export function waehleWeiterUebenZiel(fortschritt: FortschrittMap): LernElement {
-  return waehleNaechstesElement(GRUND_ELEMENTE, fortschritt);
+/** Lernweg für Anfänger: erst die Gemeinden, dann die Nachbarn, dann Täler und Seen. */
+const GRUND_REIHENFOLGE: Kategorie[] = ['gemeinde', 'kanton', 'gewaesser'];
+
+/**
+ * Ziel für «Weiter üben»: fällige Wiederholungen zuerst,
+ * sonst das nächste Neue aus der frühesten Gruppe, die noch nicht sitzt.
+ */
+export function waehleWeiterUebenZiel(
+  fortschritt: FortschrittMap,
+  datum = heuteIso(),
+): LernElement {
+  const faellig = GRUND_ELEMENTE.filter((el) => {
+    const f = fortschritt[el.id];
+    return f !== undefined && f.stufe > 0 && istFaellig(f, datum);
+  });
+  if (faellig.length > 0) return waehleNaechstesElement(faellig, fortschritt, null, datum);
+
+  for (const kategorie of GRUND_REIHENFOLGE) {
+    const offen = elementeFuer(kategorie).filter(
+      (el) => !istGutGelernt((fortschritt[el.id]?.stufe ?? 0) as LeitnerStufe),
+    );
+    if (offen.length > 0) return waehleNaechstesElement(offen, fortschritt, null, datum);
+  }
+
+  return waehleNaechstesElement(GRUND_ELEMENTE, fortschritt, null, datum);
 }
 
 export function kartenElementId(el: LernElement): string {

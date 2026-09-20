@@ -31,6 +31,8 @@ interface FortschrittState {
   serie: SerieStand;
   mission: MissionStand;
   uebungSekunden: Record<string, number>;
+  /** Ids der Spielmodi, die schon mindestens einmal gestartet wurden. */
+  gespielteModi: string[];
   tonAn: boolean;
   profiFreigeschaltet: boolean;
   feier: Feier | null;
@@ -43,6 +45,7 @@ interface FortschrittState {
   merkePruefungNote: (schluessel: string, note: number) => void;
   merkeMemoryZuege: (zuege: number) => void;
   zaehleMissionArt: (art: SpielQuelle) => void;
+  merkeModusGespielt: (modusId: string) => void;
   tickUebung: (sekunden: number) => void;
   setTonAn: (an: boolean) => void;
   setName: (name: string) => void;
@@ -111,6 +114,7 @@ export const useFortschrittStore = create<FortschrittState>()(
       serie: leereSerie(),
       mission: leererMissionStand(),
       uebungSekunden: {},
+      gespielteModi: [],
       tonAn: true,
       profiFreigeschaltet: false,
       feier: null,
@@ -222,6 +226,13 @@ export const useFortschrittStore = create<FortschrittState>()(
       zaehleMissionArt: (art) =>
         set((state) => ({ mission: zaehleMission(state.mission, art) })),
 
+      merkeModusGespielt: (modusId) =>
+        set((state) => {
+          const bisher = state.gespielteModi ?? [];
+          if (bisher.includes(modusId)) return state;
+          return { gespielteModi: [...bisher, modusId] };
+        }),
+
       tickUebung: (sekunden) =>
         set((state) => {
           const tag = heuteIso();
@@ -254,6 +265,7 @@ export const useFortschrittStore = create<FortschrittState>()(
           serie: alt.serie ?? current.serie,
           mission: missionStandFuerTag(alt.mission),
           uebungSekunden: { ...current.uebungSekunden, ...(alt.uebungSekunden ?? {}) },
+          gespielteModi: alt.gespielteModi ?? current.gespielteModi,
           avatar: { ...current.avatar, ...(alt.avatar ?? {}) },
           abzeichen: alt.abzeichen ?? current.abzeichen,
         };
@@ -272,6 +284,7 @@ export const useFortschrittStore = create<FortschrittState>()(
         serie: state.serie,
         mission: state.mission,
         uebungSekunden: state.uebungSekunden,
+        gespielteModi: state.gespielteModi,
         tonAn: state.tonAn,
         profiFreigeschaltet: state.profiFreigeschaltet,
       }),

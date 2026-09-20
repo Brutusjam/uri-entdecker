@@ -1,1 +1,1 @@
-export type HauptTab = 'karte' | 'spiele' | 'album' | 'profil';
+export type HauptTab = 'start' | 'spiele' | 'album' | 'profil';
