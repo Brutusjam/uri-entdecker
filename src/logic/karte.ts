@@ -58,6 +58,7 @@ export function findeKantonAnPunkt(lng: number, lat: number, kantone: KantonFeat
   return kantone.find((k) => punktInFlaeche(lng, lat, k as Flaeche)) ?? null;
 }
 
+/** Nur zum Zeichnen. Der Göscheneralpsee ist keine Trefferzone. */
 export function seePuffer(feature: GewaesserFeature): Feature<Polygon | MultiPolygon> | null {
   if (!KLEINE_SEEN.has(feature.properties.id)) return null;
   try {
@@ -72,14 +73,7 @@ export function findeGewaesserAnPunkt(
   lat: number,
   seen: GewaesserFeature[],
 ): GewaesserFeature | null {
-  const p = point([lng, lat]);
-  const exakt = seen.find((s) => punktInFlaeche(lng, lat, s as Flaeche));
-  if (exakt) return exakt;
-  for (const s of seen) {
-    const zone = seePuffer(s);
-    if (zone && booleanPointInPolygon(p, zone)) return s;
-  }
-  return null;
+  return seen.find((s) => punktInFlaeche(lng, lat, s as Flaeche)) ?? null;
 }
 
 /** Priorität: Gewässer > Gemeinde > Kanton (Nachbar) */

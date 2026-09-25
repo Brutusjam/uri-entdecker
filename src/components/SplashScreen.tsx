@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { assetUrl } from '../lib/assetUrl';
 
 /**
- * Splash-Screen «Aufbruch» (Uri-Entdecker)
+ * Splash-Screen «Aufbruch» (Uri entdecken)
  * - Logo fällt federnd ein, Lia und Stierli kommen von links/rechts ins Bild.
  * - Solange geladen wird: Ladebalken mit wechselnden Sprüchen.
  * - Wenn fortschritt >= 1: grosser «Los geht’s!»-Knopf.
@@ -41,7 +41,7 @@ export default function SplashScreen({ fortschritt, onStart }: Props) {
   return (
     <main
       className="fixed inset-0 overflow-hidden bg-sky font-body text-ink"
-      aria-label="Uri-Entdecker wird gestartet"
+      aria-label="Uri entdecken wird gestartet"
     >
       {/* Hintergrund: Himmel, Berge, Urnersee, Hügel – unten verankert */}
       <img
@@ -50,24 +50,16 @@ export default function SplashScreen({ fortschritt, onStart }: Props) {
         className="absolute inset-0 h-full w-full object-cover object-bottom"
       />
 
-      {/* Logo + Untertitel */}
-      <div className="absolute inset-x-0 top-[4%] flex flex-col items-center gap-2 px-6">
+      {/* Logo */}
+      <div className="absolute inset-x-0 top-[4%] flex justify-center px-6">
         <motion.img
           src={assetUrl('/logo/uri-entdecker-schriftzug.svg')}
-          alt="Uri-Entdecker"
+          alt="Uri entdecken"
           className="w-[min(78vw,460px)] landscape:w-[min(38vw,460px)]"
           initial={{ y: ruhig ? 0 : -180, opacity: 0, rotate: ruhig ? 0 : -6 }}
           animate={{ y: 0, opacity: 1, rotate: 0 }}
           transition={{ ...feder, delay: 0.1 }}
         />
-        <motion.p
-          className="font-display text-xl font-extrabold sm:text-2xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
-        >
-          Kanton Uri spielend entdecken
-        </motion.p>
       </div>
 
       {/* Lia mit Sprechblase */}
@@ -79,13 +71,13 @@ export default function SplashScreen({ fortschritt, onStart }: Props) {
       >
         <img src={assetUrl('/figuren/lia-neutral.svg')} alt="Lia" className="block w-full" />
         <motion.div
-          className="absolute -top-[16%] left-[22%] whitespace-nowrap rounded-[20px] border-4 border-ink bg-white px-4 py-2 text-lg font-extrabold shadow-comic landscape:left-[78%] landscape:top-0 landscape:text-xl"
+          className="absolute -top-[42%] left-[18%] w-[min(62vw,240px)] rounded-[20px] border-4 border-ink bg-white px-4 py-2 text-center text-lg font-extrabold leading-tight shadow-comic landscape:-top-[18%] landscape:left-0 landscape:w-[min(26vw,210px)]"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ ...feder, delay: 1.0 }}
           style={{ transformOrigin: 'bottom left' }}
         >
-          Hoi! Bereit für Uri?
+          Hoi du! Bist du bereit Uri zu entdecken?
         </motion.div>
       </motion.div>
 

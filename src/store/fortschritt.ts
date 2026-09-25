@@ -52,6 +52,7 @@ interface FortschrittState {
   setAvatar: (avatar: Avatar) => void;
   setProfiFreigeschaltet: (an: boolean) => void;
   schliesseFeier: () => void;
+  loescheAlles: () => void;
 }
 
 function abzeichenKontext(state: {
@@ -250,6 +251,27 @@ export const useFortschrittStore = create<FortschrittState>()(
           return { profiFreigeschaltet: true, feier: PROFI_FEIER };
         }),
       schliesseFeier: () => set({ feier: null }),
+
+      loescheAlles: () =>
+        set({
+          fortschritt: {},
+          letzteFrageId: null,
+          puzzleBest: {},
+          blitzBest: {},
+          pruefungBest: {},
+          memoryBestZuege: null,
+          xp: 0,
+          name: '',
+          avatar: {},
+          abzeichen: [],
+          serie: leereSerie(),
+          mission: leererMissionStand(),
+          uebungSekunden: {},
+          gespielteModi: [],
+          tonAn: true,
+          profiFreigeschaltet: false,
+          feier: null,
+        }),
     }),
     {
       name: 'uri-entdecker-fortschritt',

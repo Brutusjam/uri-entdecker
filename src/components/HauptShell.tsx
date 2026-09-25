@@ -32,7 +32,12 @@ export function HauptShell({
 }: HauptShellProps) {
   return (
     <Bildschirm className="pb-[calc(3.75rem+env(safe-area-inset-bottom))]">
-      <Header titel="Uri-Entdecker" logoSrc={assetUrl('/logo/uri-entdecker-logo.svg')} leitfarbe="uri-gelb" />
+      <Header
+        titel="Uri entdecken"
+        logoSrc={assetUrl('/logo/uri-entdecker-logo.svg')}
+        leitfarbe="uri-gelb"
+        onLogo={() => onTabWechsel('start')}
+      />
 
       <main className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain">
         {tab === 'start' ? (

@@ -22,6 +22,8 @@ export interface HeaderProps {
   onTonUmschalten?: () => void;
   onZurueck?: () => void;
   onHome?: () => void;
+  /** Klick auf das Logo (z. B. zurück zur Startseite). */
+  onLogo?: () => void;
   klebend?: boolean;
   className?: string;
 }
@@ -36,6 +38,7 @@ export function Header({
   onTonUmschalten,
   onZurueck,
   onHome,
+  onLogo,
   klebend = true,
   className,
 }: HeaderProps) {
@@ -70,11 +73,29 @@ export function Header({
           ) : null}
           {logoSrc ? (
             <h1 className="min-w-0">
-              <img
-                src={logoSrc}
-                alt={titel}
-                className="h-12 w-auto max-w-full object-contain sm:h-14"
-              />
+              {onLogo ? (
+                <button
+                  type="button"
+                  onClick={onLogo}
+                  aria-label={`${titel}, zur Startseite`}
+                  className={cn(
+                    'inline-flex min-h-12 cursor-pointer items-center rounded-md bg-transparent p-0',
+                    'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-uri-gelb',
+                  )}
+                >
+                  <img
+                    src={logoSrc}
+                    alt=""
+                    className="h-12 w-auto max-w-full object-contain sm:h-14"
+                  />
+                </button>
+              ) : (
+                <img
+                  src={logoSrc}
+                  alt={titel}
+                  className="h-12 w-auto max-w-full object-contain sm:h-14"
+                />
+              )}
             </h1>
           ) : null}
         </div>

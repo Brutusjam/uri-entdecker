@@ -14,8 +14,11 @@
       <path d="M98 336 L128 326 L152 404 L118 404 Z" fill="#E63946"/>
       <path d="M302 336 L272 326 L248 404 L282 404 Z" fill="#E63946"/>
     </g>
-    <rect id="lia-hals" x="174" y="262" width="52" height="52" rx="12" fill="#F6C9A5"/>
     <path id="lia-kapuze" d="M122 316 C 150 352, 250 352, 278 316 C 258 298, 142 298, 122 316 Z" fill="#1FA396"/>
+    <g id="lia-hals">
+      <path d="M178 268 H222 V306 Q200 320 178 306 Z" fill="#F6C9A5" stroke="none"/>
+      <path d="M178 268 H222 M178 268 V300 M222 268 V300" fill="none"/>
+    </g>
     <g id="lia-baendel">
       <path d="M180 338 L178 376" fill="none" stroke-width="6"/>
       <path d="M220 338 L222 376" fill="none" stroke-width="6"/>

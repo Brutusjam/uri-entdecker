@@ -54,7 +54,7 @@ export const KATEGORIEN: KategorieInfo[] = [
   {
     id: 'gewaesser',
     titel: 'Täler & Seen',
-    erklaerung: 'Die 10 Täler, der Urnersee und der Göscheneralpsee',
+    erklaerung: 'Die 10 Täler und der Urnersee',
     tippHinweis: 'Tippe direkt auf einen Talnamen oder auf einen See.',
     elemente: [...TAELER, ...GEWAESSER],
     fortschrittEbene: 'gewaesser',

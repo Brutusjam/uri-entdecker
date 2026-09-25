@@ -134,7 +134,7 @@ export function Styleguide() {
 
       <main className="mx-auto flex max-w-[1400px] flex-col gap-12 px-4 py-8">
         <section className="rounded-comic-lg border-comic border-ink bg-sky p-6 shadow-comic">
-          <p className="font-display text-4xl font-extrabold text-ink md:text-5xl">Uri-Entdecker</p>
+          <p className="font-display text-4xl font-extrabold text-ink md:text-5xl">Uri entdecken</p>
           <p className="mt-2 max-w-prose text-xl">
             Hier siehst du alle Farben, Bausteine und Figuren. So prüfst du, ob Lia, Stierli und die
             Buttons zusammenpassen.
@@ -174,7 +174,7 @@ export function Styleguide() {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-comic border-comic border-ink bg-weiss p-5 shadow-comic">
               <p className="text-base text-ink/70">Baloo 2 · Titel, Buttons, Zahlen</p>
-              <p className="mt-2 font-display text-5xl font-extrabold">Uri-Entdecker</p>
+              <p className="mt-2 font-display text-5xl font-extrabold">Uri entdecken</p>
               <p className="font-display text-3xl font-bold">Finden · Wappen · Puzzle</p>
               <p className="mt-2 font-display text-4xl font-extrabold tabular-nums">240 XP</p>
             </div>

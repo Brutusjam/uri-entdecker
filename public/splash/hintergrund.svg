@@ -11,8 +11,8 @@
 <polygon points="330,250 298,290 315,282 330,296 347,283 367,290" fill="#FFFFFF"></polygon>
 <polygon points="560,280 527,310 542,304 556,316 572,304 593,310" fill="#FFFFFF"></polygon>
 <polygon points="800,230 766,275 782,266 798,280 816,266 842,275" fill="#FFFFFF"></polygon>
-<ellipse cx="610" cy="604" rx="200" ry="28" fill="#3AA7E8"></ellipse>
-<path d="M540 600 q12 -8 24 0 q12 8 24 0 M630 610 q12 -8 24 0 q12 8 24 0" fill="none" stroke="#FFFFFF" stroke-width="4"></path>
+<ellipse cx="610" cy="630" rx="200" ry="28" fill="#3AA7E8"></ellipse>
+<path d="M540 622 q12 -8 24 0 q12 8 24 0 M630 632 q12 -8 24 0 q12 8 24 0" fill="none" stroke="#FFFFFF" stroke-width="4"></path>
 <path d="M0 640 C 200 560, 380 620, 560 640 C 760 662, 950 560, 1194 600 V2000 H0 Z" fill="#3DBE6B"></path>
 <path d="M0 744 C 250 684, 500 724, 700 762 C 900 800, 1050 704, 1194 724 V2000 H0 Z" fill="#2FA85A"></path>
 </g>

@@ -13,18 +13,6 @@ export const GEWAESSER: LernElement[] = [
     ],
     funFact: 'Der Urnersee ist der östliche Arm des Vierwaldstättersees – von Brunnen bis Flüelen.',
   },
-  {
-    id: 'see-goescheneralpsee',
-    kategorie: 'gewaesser',
-    name: 'Göscheneralpsee',
-    geo: 'goescheneralpsee',
-    tipps: [
-      'Der See liegt hoch in den Bergen – nicht am Urnersee.',
-      'Schau am Ende des Göschenertals, über Göschenen.',
-      'Das Gewässer blinkt kurz auf!',
-    ],
-    funFact: 'Der Stausee liegt am Ende des Göschenertals, hoch über Göschenen.',
-  },
 ];
 
 export const GEWAESSER_MAP = new Map(GEWAESSER.map((g) => [g.geo, g]));

@@ -10,6 +10,7 @@ import { Figur } from './ui/Figur';
 import { IconEltern } from './ui/icons';
 import { cn } from './ui/cn';
 import { ElternAnsicht } from './ElternAnsicht';
+import { UeberApp } from './UeberApp';
 import { ABZEICHEN } from '../logic/abzeichen';
 import { levelVonXp } from '../logic/level';
 import { useFortschrittStore } from '../store/fortschritt';
@@ -31,6 +32,7 @@ const CAP_FARBEN: { id: CapFarbe; label: string; klasse: string }[] = [
 
 export function Profil({ eingebettet = false, onZurueck, onUeben }: ProfilProps) {
   const [elternOffen, setElternOffen] = useState(false);
+  const [ueberOffen, setUeberOffen] = useState(false);
   const name = useFortschrittStore((s) => s.name);
   const setName = useFortschrittStore((s) => s.setName);
   const avatar = useFortschrittStore((s) => s.avatar);
@@ -47,6 +49,10 @@ export function Profil({ eingebettet = false, onZurueck, onUeben }: ProfilProps)
   const spruch = heimat
     ? `Lia kommt aus ${heimat.name} – wie du!`
     : 'Sag Lia, wie du heisst und wo du wohnst.';
+
+  if (ueberOffen) {
+    return <UeberApp eingebettet={eingebettet} onZurueck={() => setUeberOffen(false)} />;
+  }
 
   if (elternOffen && onUeben) {
     return (
@@ -96,6 +102,9 @@ export function Profil({ eingebettet = false, onZurueck, onUeben }: ProfilProps)
           placeholder="Wie heisst du?"
           className="min-h-12 w-full rounded-comic border-comic-sm border-ink bg-weiss px-3 font-display text-xl font-bold text-ink focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-uri-gelb"
         />
+        <span className="block font-body text-base font-semibold text-ink/70">
+          Der Name bleibt nur auf diesem Gerät.
+        </span>
       </label>
 
       <label className="space-y-1">
@@ -162,6 +171,10 @@ export function Profil({ eingebettet = false, onZurueck, onUeben }: ProfilProps)
           Eltern-Ansicht
         </ComicButton>
       ) : null}
+
+      <ComicButton fullWidth variante="neutral" onClick={() => setUeberOffen(true)}>
+        Über die App
+      </ComicButton>
 
       {!eingebettet && onZurueck ? (
         <ComicButton fullWidth variante="neutral" onClick={onZurueck}>

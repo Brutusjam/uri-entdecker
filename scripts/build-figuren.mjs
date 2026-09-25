@@ -13,6 +13,7 @@ function kopiere(von, nachName) {
 
 kopiere(join(quelle, 'lia-neutral.svg'), 'lia-neutral.svg');
 kopiere(join(quelle, 'stierli-neutral.svg'), 'stierli-neutral.svg');
+kopiere(join(quelle, 'beat-neutral.svg'), 'beat-neutral.svg');
 
 for (const datei of [
   'lia-denkt.svg',

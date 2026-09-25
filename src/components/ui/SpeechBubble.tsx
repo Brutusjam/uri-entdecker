@@ -36,49 +36,46 @@ export function SpeechBubble({
   );
 }
 
+/**
+ * Zipfel als zwei Flächen statt Strich: die Kontur ist eine gefüllte Form,
+ * das Weiss liegt darüber und reicht in die Blase. So bleibt keine feine
+ * Innenlinie, die den Pfeil als geschlossenes Dreieck zeichnet.
+ * Die Basis liegt nur noch knapp in der Blase, damit das Dreieck die Umrandung
+ * auf einer breiteren Strecke überdeckt.
+ */
 function Zipfel({ seite }: { seite: ZipfelSeite }) {
   if (seite === 'links' || seite === 'rechts') {
     const nachLinks = seite === 'links';
     return (
       <svg
-        width="16"
-        height="28"
-        viewBox="0 0 16 28"
+        width="24"
+        height="36"
+        viewBox="0 0 24 36"
         className={cn(
-          'pointer-events-none absolute top-1/2 -translate-y-1/2 text-ink',
-          nachLinks ? '-left-[13px]' : '-right-[13px]',
+          'pointer-events-none absolute top-1/2 z-10 -translate-y-1/2',
+          nachLinks ? '-left-[19px]' : '-right-[19px]',
         )}
         aria-hidden
       >
-        <path
-          d={nachLinks ? 'M15 2 L2 14 L15 26' : 'M1 2 L14 14 L1 26'}
-          className="fill-weiss"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinejoin="round"
-        />
+        <polygon points={nachLinks ? '24,2 2,18 24,34' : '0,2 22,18 0,34'} className="fill-ink" />
+        <polygon points={nachLinks ? '24,6 8,18 24,30' : '0,6 16,18 0,30'} className="fill-weiss" />
       </svg>
     );
   }
 
   return (
     <svg
-      width="28"
-      height="16"
-      viewBox="0 0 28 16"
+      width="36"
+      height="24"
+      viewBox="0 0 36 24"
       className={cn(
-        'pointer-events-none absolute -bottom-[10px] text-ink',
-        seite === 'unten-links' ? 'left-8' : 'right-8',
+        'pointer-events-none absolute -bottom-[19px] z-10',
+        seite === 'unten-links' ? 'left-6' : 'right-6',
       )}
       aria-hidden
     >
-      <path
-        d="M2 1 L14 14 L26 1"
-        className="fill-weiss"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
+      <polygon points="2,0 18,22 34,0" className="fill-ink" />
+      <polygon points="6,0 18,16 30,0" className="fill-weiss" />
     </svg>
   );
 }

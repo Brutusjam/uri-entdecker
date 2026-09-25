@@ -218,9 +218,7 @@ export function UriKarte({
       }
       const gemFeatures = ebenen.includes('gemeinden') ? daten.gemeinden.features : [];
       const seeFeatures =
-        ebenen.includes('seen') && ebenen.includes('gemeinden')
-          ? [...daten.urnersee.features, ...daten.goescheneralpsee.features]
-          : [];
+        ebenen.includes('seen') && ebenen.includes('gemeinden') ? daten.urnersee.features : [];
       let flaeche = findeFeatureAnPunkt(lng, lat, gemFeatures, daten.kantone.features, seeFeatures);
       if (!flaeche && gemFeatures.length > 0) {
         const klein = findeKleineGemeindeAnPixel(mapX, mapY, gemFeatures, (g) => {
@@ -304,12 +302,6 @@ export function UriKarte({
       }
       if (id === 'see-urnersee') {
         const f = daten.urnersee.features[0];
-        if (!f) return null;
-        const c = path.centroid(mitD3Windung(f));
-        return Number.isFinite(c[0]) ? [c[0], c[1]] : null;
-      }
-      if (id === 'see-goescheneralpsee') {
-        const f = daten.goescheneralpsee.features[0];
         if (!f) return null;
         const c = path.centroid(mitD3Windung(f));
         return Number.isFinite(c[0]) ? [c[0], c[1]] : null;
@@ -695,51 +687,30 @@ export function UriKarte({
                   </g>
                 );
               })}
-              {daten.goescheneralpsee.features.map((f) => {
-                const id = 'see-goescheneralpsee';
+              {daten.goescheneralpsee.features.map((f, i) => {
                 const puffer = seePuffer(f);
-                const labelPx = path.centroid(mitD3Windung(f));
                 return (
-                  <g key={id}>
+                  <g key={`goescheneralpsee-${i}`}>
                     {puffer ? (
                       <path
                         d={zeichne(puffer)}
-                        fill={seeFill(id)}
+                        fill={FARBE.see}
                         fillOpacity={0.78}
                         stroke={FARBE.ink}
                         strokeWidth={2.5}
                         vectorEffect="non-scaling-stroke"
-                        pointerEvents="visibleFill"
-                        className={flaechenKlasse(id)}
+                        pointerEvents="none"
                       />
                     ) : null}
                     <path
                       d={zeichne(f)}
-                      fill={seeFill(id)}
+                      fill={FARBE.see}
                       stroke={FARBE.ink}
                       strokeWidth={2.25}
                       vectorEffect="non-scaling-stroke"
-                      pointerEvents="visibleFill"
-                      className={flaechenKlasse(id)}
+                      pointerEvents="none"
                     />
                     <path d={zeichne(f)} fill="url(#see-wellen)" pointerEvents="none" />
-                    {talNamen && labelPx ? (
-                      <text
-                        x={labelPx[0]}
-                        y={labelPx[1] + 8}
-                        textAnchor="middle"
-                        className="font-display"
-                        fontSize={3.4}
-                        fontWeight={700}
-                        fill={FARBE.ink}
-                        stroke={FARBE.weiss}
-                        strokeWidth={1.1}
-                        paintOrder="stroke"
-                        pointerEvents="none"
-                      >
-                        {f.properties.name}
-                      </text>
-                    ) : null}
                   </g>
                 );
               })}

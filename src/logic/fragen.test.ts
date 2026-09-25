@@ -15,6 +15,9 @@ describe('fragen', () => {
     expect(elementeFuer('gemeinde')).toHaveLength(19);
     expect(elementeFuer('kanton').every((e) => e.kategorie === 'kanton')).toBe(true);
     expect(elementeFuer('gewaesser').some((e) => e.kategorie === 'tal')).toBe(true);
+    expect(elementeFuer('gewaesser').filter((e) => e.kategorie === 'gewaesser').map((e) => e.name)).toEqual([
+      'Urnersee',
+    ]);
     expect(elementeFuer('pass')).toHaveLength(5);
     expect(elementeFuer('berg')).toHaveLength(8);
     expect(elementeFuer('sagenort').every((e) => e.kategorie === 'sagenort')).toBe(true);

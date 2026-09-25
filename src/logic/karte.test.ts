@@ -5,15 +5,14 @@ import { pointOnFeature } from '@turf/turf';
 import {
   findeGemeindeAnPunkt,
   findeFeatureAnPunkt,
-  findeGewaesserAnPunkt,
   findeKleineGemeindeAnPixel,
   KLEINE_GEMEINDEN,
-  MIN_GEMEINDE_TREFFER_PX,
   KLEINE_SEEN,
+  MIN_GEMEINDE_TREFFER_PX,
+  seePuffer,
   mitD3Windung,
   reliefBildKasten,
   ringSumme,
-  seePuffer,
 } from './karte';
 import { geoMercator } from 'd3-geo';
 import { RELIEF_BBOX } from '../data/relief';
@@ -71,28 +70,19 @@ describe('karte – Trefferlogik', () => {
     }
   });
 
-  it('vergrössert den Göscheneralpsee, damit er sichtbar und treffbar bleibt', () => {
-    const goeschen: GewaesserFeature[] = JSON.parse(
-      readFileSync(join(ROOT, 'public/geo/goescheneralpsee.geojson'), 'utf8'),
-    ).features;
-    expect(KLEINE_SEEN.has('goescheneralpsee')).toBe(true);
-    expect(seePuffer(goeschen[0]!)).not.toBeNull();
-    const [lng, lat] = pointOnFeature(goeschen[0]!).geometry.coordinates;
-    const daneben = findeGewaesserAnPunkt(lng, lat + 2 / 111, goeschen);
-    expect(daneben?.properties.name).toBe('Göscheneralpsee');
-  });
-
-  it('priorisiert Gewässer vor Gemeinden', () => {
+  it('zeichnet den Göscheneralpsee sichtbar, ohne ihn anzuklicken', () => {
     const kantone: KantonFeature[] = JSON.parse(
       readFileSync(join(ROOT, 'public/geo/kantone.geojson'), 'utf8'),
     ).features;
     const goeschen: GewaesserFeature[] = JSON.parse(
       readFileSync(join(ROOT, 'public/geo/goescheneralpsee.geojson'), 'utf8'),
     ).features;
-    const [lng, lat] = pointOnFeature(goeschen[0]).geometry.coordinates;
-    const treffer = findeFeatureAnPunkt(lng, lat, gemeinden, kantone, goeschen);
-    expect(treffer?.kategorie).toBe('gewaesser');
-    expect(treffer?.name).toBe('Göscheneralpsee');
+    expect(KLEINE_SEEN.has('goescheneralpsee')).toBe(true);
+    expect(seePuffer(goeschen[0]!)).not.toBeNull();
+    const [lng, lat] = pointOnFeature(goeschen[0]!).geometry.coordinates;
+    const treffer = findeFeatureAnPunkt(lng, lat, gemeinden, kantone, []);
+    expect(treffer?.kategorie).toBe('gemeinde');
+    expect(treffer?.name).toBe('Göschenen');
   });
 
   it('findet Urnersee auf offener Wasserfläche', () => {
