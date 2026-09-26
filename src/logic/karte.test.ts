@@ -7,9 +7,7 @@ import {
   findeFeatureAnPunkt,
   findeKleineGemeindeAnPixel,
   KLEINE_GEMEINDEN,
-  KLEINE_SEEN,
   MIN_GEMEINDE_TREFFER_PX,
-  seePuffer,
   mitD3Windung,
   reliefBildKasten,
   ringSumme,
@@ -70,15 +68,13 @@ describe('karte – Trefferlogik', () => {
     }
   });
 
-  it('zeichnet den Göscheneralpsee sichtbar, ohne ihn anzuklicken', () => {
+  it('trifft auf dem Göscheneralpsee die Gemeinde darunter', () => {
     const kantone: KantonFeature[] = JSON.parse(
       readFileSync(join(ROOT, 'public/geo/kantone.geojson'), 'utf8'),
     ).features;
     const goeschen: GewaesserFeature[] = JSON.parse(
       readFileSync(join(ROOT, 'public/geo/goescheneralpsee.geojson'), 'utf8'),
     ).features;
-    expect(KLEINE_SEEN.has('goescheneralpsee')).toBe(true);
-    expect(seePuffer(goeschen[0]!)).not.toBeNull();
     const [lng, lat] = pointOnFeature(goeschen[0]!).geometry.coordinates;
     const treffer = findeFeatureAnPunkt(lng, lat, gemeinden, kantone, []);
     expect(treffer?.kategorie).toBe('gemeinde');

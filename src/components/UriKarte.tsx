@@ -8,7 +8,6 @@ import {
   findeKleineGemeindeAnPixel,
   mitD3Windung,
   reliefBildKasten,
-  seePuffer,
 } from '../logic/karte';
 import { findePunktAnPunkt, punktAlsAuswahl } from '../logic/punkte';
 import { findeTalAnPixel, findeTalAnPunkt, liniePfad, talPuffer, type TalGeo } from '../logic/taeler';
@@ -687,33 +686,19 @@ export function UriKarte({
                   </g>
                 );
               })}
-              {daten.goescheneralpsee.features.map((f, i) => {
-                const puffer = seePuffer(f);
-                return (
-                  <g key={`goescheneralpsee-${i}`}>
-                    {puffer ? (
-                      <path
-                        d={zeichne(puffer)}
-                        fill={FARBE.see}
-                        fillOpacity={0.78}
-                        stroke={FARBE.ink}
-                        strokeWidth={2.5}
-                        vectorEffect="non-scaling-stroke"
-                        pointerEvents="none"
-                      />
-                    ) : null}
-                    <path
-                      d={zeichne(f)}
-                      fill={FARBE.see}
-                      stroke={FARBE.ink}
-                      strokeWidth={2.25}
-                      vectorEffect="non-scaling-stroke"
-                      pointerEvents="none"
-                    />
-                    <path d={zeichne(f)} fill="url(#see-wellen)" pointerEvents="none" />
-                  </g>
-                );
-              })}
+              {daten.goescheneralpsee.features.map((f, i) => (
+                <g key={`goescheneralpsee-${i}`}>
+                  <path
+                    d={zeichne(f)}
+                    fill={FARBE.see}
+                    stroke={FARBE.ink}
+                    strokeWidth={1}
+                    vectorEffect="non-scaling-stroke"
+                    pointerEvents="none"
+                  />
+                  <path d={zeichne(f)} fill="url(#see-wellen)" pointerEvents="none" />
+                </g>
+              ))}
             </>
           )}
 

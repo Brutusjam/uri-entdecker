@@ -28,10 +28,6 @@ export function findeKleineGemeindeAnPixel(
   return best?.gem ?? null;
 }
 
-/** Kleine Seen, die sonst auf der Uri-Karte nur wenige Pixel gross sind. */
-export const KLEINE_SEEN = new Set(['goescheneralpsee']);
-export const SEE_PUFFER_KM = 3;
-
 type Flaeche = Feature<Polygon | MultiPolygon>;
 
 function punktInFlaeche(lng: number, lat: number, feature: Flaeche): boolean {
@@ -56,16 +52,6 @@ export function findeGemeindeAnPunkt(
 
 export function findeKantonAnPunkt(lng: number, lat: number, kantone: KantonFeature[]): KantonFeature | null {
   return kantone.find((k) => punktInFlaeche(lng, lat, k as Flaeche)) ?? null;
-}
-
-/** Nur zum Zeichnen. Der Göscheneralpsee ist keine Trefferzone. */
-export function seePuffer(feature: GewaesserFeature): Feature<Polygon | MultiPolygon> | null {
-  if (!KLEINE_SEEN.has(feature.properties.id)) return null;
-  try {
-    return buffer(feature as Flaeche, SEE_PUFFER_KM, { units: 'kilometers' }) ?? null;
-  } catch {
-    return null;
-  }
 }
 
 export function findeGewaesserAnPunkt(
