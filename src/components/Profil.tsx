@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { GEMEINDEN } from '../data/gemeinden';
 import { Bildschirm } from './StatusSeite';
 import { Header } from './ui/Header';
@@ -46,12 +46,21 @@ export function Profil({ eingebettet = false, onZurueck, onUeben }: ProfilProps)
   const xpBis = naechstes ?? level.xp;
   const xpVon = level.xp;
 
+  const ansichtRef = useRef<HTMLDivElement>(null);
   const spruch = heimat
     ? `Lia kommt aus ${heimat.name} – wie du!`
     : 'Sag Lia, wie du heisst und wo du wohnst.';
 
+  useLayoutEffect(() => {
+    ansichtRef.current?.closest('main')?.scrollTo(0, 0);
+  }, [ueberOffen]);
+
   if (ueberOffen) {
-    return <UeberApp eingebettet={eingebettet} onZurueck={() => setUeberOffen(false)} />;
+    return (
+      <div ref={ansichtRef}>
+        <UeberApp eingebettet={eingebettet} onZurueck={() => setUeberOffen(false)} />
+      </div>
+    );
   }
 
   if (elternOffen && onUeben) {
@@ -184,12 +193,14 @@ export function Profil({ eingebettet = false, onZurueck, onUeben }: ProfilProps)
     </div>
   );
 
-  if (eingebettet) return inhalt;
+  if (eingebettet) return <div ref={ansichtRef}>{inhalt}</div>;
 
   return (
-    <Bildschirm>
-      <Header titel="Profil" leitfarbe="uri-gelb" onZurueck={onZurueck} />
-      {inhalt}
-    </Bildschirm>
+    <div ref={ansichtRef}>
+      <Bildschirm>
+        <Header titel="Profil" leitfarbe="uri-gelb" onZurueck={onZurueck} />
+        {inhalt}
+      </Bildschirm>
+    </div>
   );
 }

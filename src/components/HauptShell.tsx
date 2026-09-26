@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from 'react';
 import { Bildschirm } from './StatusSeite';
 import { Header } from './ui/Header';
 import { TabLeiste } from './ui/TabLeiste';
@@ -30,22 +31,40 @@ export function HauptShell({
   onMission,
   onUeben,
 }: HauptShellProps) {
+  const inhaltRef = useRef<HTMLElement>(null);
+
+  const zeigeVonAnfang = () => {
+    inhaltRef.current?.scrollTo(0, 0);
+  };
+
+  const wechsleTab = (naechster: HauptTab) => {
+    if (naechster === tab) {
+      zeigeVonAnfang();
+      return;
+    }
+    onTabWechsel(naechster);
+  };
+
+  useLayoutEffect(() => {
+    zeigeVonAnfang();
+  }, [tab]);
+
   return (
     <Bildschirm className="pb-[calc(3.75rem+env(safe-area-inset-bottom))]">
       <Header
         titel="Uri entdecken"
         logoSrc={assetUrl('/logo/uri-entdecker-logo.svg')}
         leitfarbe="uri-gelb"
-        onLogo={() => onTabWechsel('start')}
+        onLogo={() => wechsleTab('start')}
       />
 
-      <main className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain">
+      <main ref={inhaltRef} className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain">
         {tab === 'start' ? (
           <StartSeite
             onUeben={onUebenKategorie}
             onUebenElement={onUeben}
             onKarte={onKarte}
-            onAlleSpiele={() => onTabWechsel('spiele')}
+            onAlleSpiele={() => wechsleTab('spiele')}
             onModus={onModus}
             onMission={onMission}
           />
@@ -55,7 +74,7 @@ export function HauptShell({
         {tab === 'profil' ? <Profil eingebettet onUeben={onUeben} /> : null}
       </main>
 
-      <TabLeiste aktiv={tab} onWechsel={onTabWechsel} />
+      <TabLeiste aktiv={tab} onWechsel={wechsleTab} />
     </Bildschirm>
   );
 }
